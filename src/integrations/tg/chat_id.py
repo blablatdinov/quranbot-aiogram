@@ -31,7 +31,9 @@ from app_types.update import Update
 from exceptions.base_exception import InternalBotError
 from services.json_path_value import ErrRedirectJsonPath, MatchManyJsonPath
 
-type ChatId = SupportsInt
+
+class ChatId(SupportsInt):
+    """Идентификатор чата."""
 
 
 @final
