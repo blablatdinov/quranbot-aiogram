@@ -31,7 +31,10 @@ from srv.ayats.pg_ayat import PgAyat
 from srv.events.recieved_event import ReceivedEvent
 
 type JsonPathQuery = str
-type AyatChangedEvent = ReceivedEvent
+
+
+class AyatChangedEvent(ReceivedEvent):
+    """Событие изменения аята."""
 
 
 @final
