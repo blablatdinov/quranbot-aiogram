@@ -20,7 +20,7 @@ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 OR OTHER DEALINGS IN THE SOFTWARE.
 """
-from typing import Protocol, TypeAlias, override
+from typing import Protocol, override
 
 import attrs
 from eljson.json import Json
@@ -29,7 +29,7 @@ from pyeo import elegant
 from srv.ayats.ayat_identifier import AyatIdentifier
 from srv.files.file import TgFile
 
-AyatText: TypeAlias = str
+type AyatText = str
 
 
 @elegant
