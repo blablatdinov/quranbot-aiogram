@@ -127,6 +127,7 @@ preview = true
 fixable = [
   "F401",   # Unused import
 ]
+target-version = "py312"
 ignore = [
   "ANN101",  # Missing type annotation for `self` in method
   "ANN102",  # Missing type annotation for `cls` in classmethod
@@ -155,6 +156,7 @@ ignore = [
   "PLR630",  # We not respect staticmethods
   "G001",    # Only .format for strings
   "TRY400",  # logger.error enable
+  "TCH001",  # Move import into type-checking block
 ]
 
 [tool.ruff.lint.flake8-quotes]

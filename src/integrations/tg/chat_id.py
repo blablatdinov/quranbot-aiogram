@@ -31,7 +31,7 @@ from app_types.update import Update
 from exceptions.base_exception import InternalBotError
 from services.json_path_value import ErrRedirectJsonPath, MatchManyJsonPath
 
-ChatId: TypeAlias = SupportsInt
+type ChatId = SupportsInt
 
 
 @final

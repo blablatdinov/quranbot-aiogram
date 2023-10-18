@@ -27,7 +27,7 @@ from pyeo import elegant
 
 from app_types.stringable import SupportsStr
 
-_AyatNum: TypeAlias = str
+type _AyatNum = str
 
 
 @final

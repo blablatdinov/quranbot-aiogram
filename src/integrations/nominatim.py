@@ -32,7 +32,7 @@ from pyeo import elegant
 from app_types.stringable import AsyncSupportsStr
 from integrations.tg.coordinates import Coordinates
 
-CityName: TypeAlias = AsyncSupportsStr
+type CityName = AsyncSupportsStr
 
 
 @final

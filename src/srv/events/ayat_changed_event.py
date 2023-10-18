@@ -30,8 +30,8 @@ from pyeo import elegant
 from srv.ayats.pg_ayat import PgAyat
 from srv.events.recieved_event import ReceivedEvent
 
-JsonPathQuery: TypeAlias = str
-AyatChangedEvent: TypeAlias = ReceivedEvent
+type JsonPathQuery = str
+type AyatChangedEvent = ReceivedEvent
 
 
 @final
