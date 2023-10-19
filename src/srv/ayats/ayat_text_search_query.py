@@ -32,7 +32,7 @@ from srv.ayats.text_search_query import TextSearchQuery
 
 @final
 class CachedTextSearchQuery(TextSearchQuery):
-    """Закэшированный запрос."""
+    """Закешированный запрос."""
 
     @override
     def __init__(self, origin: TextSearchQuery) -> None:

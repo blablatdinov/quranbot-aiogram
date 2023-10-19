@@ -28,14 +28,14 @@ from exceptions.base_exception import BaseAppError
 
 @final
 class SuraNotFoundError(BaseAppError):
-    """Исключение, вызываемое при отсутсвии нужной суры."""
+    """Исключение, вызываемое при отсутствии нужной суры."""
 
     user_message = 'Сура не найдена'
 
 
 @final
 class AyatNotFoundError(BaseAppError):
-    """Исключение, вызываемое при отсутсвии нужного аята."""
+    """Исключение, вызываемое при отсутствии нужного аята."""
 
     user_message = 'Аят не найден'
 
@@ -61,14 +61,14 @@ class UserHasNotCityIdError(BaseAppError):
 
 @final
 class AyatHaveNotNeighborsError(BaseAppError):
-    """Исключение, вызываемое при попытке сгенерить клавиатуру для аята без соседей."""
+    """Исключение, вызываемое при попытке сгенерировать клавиатуру для аята без соседей."""
 
     admin_message = 'У аята нет соседей'
 
 
 @final
 class UserHasNotFavoriteAyatsError(BaseAppError):
-    """Исключение, вызываемое при попытке получить избранные ааяты, пользователем, у которого их нет."""
+    """Исключение, вызываемое при попытке получить избранные аяты, пользователем, у которого их нет."""
 
     user_message = 'Вы еще не добавляли аятов в избранное'
 

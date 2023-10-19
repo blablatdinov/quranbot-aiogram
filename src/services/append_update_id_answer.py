@@ -150,7 +150,7 @@ class ChatIdDebugParam(DebugParamInterface):
 @attrs.define(frozen=True)
 @elegant
 class CommitHashDebugParam(DebugParamInterface):
-    """Отладочная информация с хэшом коммита."""
+    """Отладочная информация с хэшем коммита."""
 
     _commit_hash: str
 

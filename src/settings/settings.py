@@ -32,7 +32,7 @@ class Settings(Protocol):
     """Настройки."""
 
     def __getattr__(self, attr_name: str) -> str:
-        """Получить аттрибут.
+        """Получить атрибут.
 
         :param attr_name: str
         """
@@ -48,7 +48,7 @@ class FkSettings(Settings):
 
     @override
     def __getattr__(self, attr_name: str) -> str:
-        """Получить аттрибут.
+        """Получить атрибут.
 
         :param attr_name: str
         :return: str
