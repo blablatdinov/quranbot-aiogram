@@ -37,7 +37,7 @@ class OsEnvSettings(Settings):
 
     @override
     def __getattr__(self, attr_name: str) -> str:
-        """Получить аттрибут.
+        """Получить атрибут.
 
         :param attr_name: str
         :return: str

@@ -62,7 +62,7 @@ class PgPodcast(Podcast):
         """Получить идентификатор файла.
 
         :returns: str
-        :raises InternalBotError: если таблилца с подкастами не заполнена
+        :raises InternalBotError: если таблица с подкастами не заполнена
         :raises TelegramFileIdNotFilledError: идентификатор файла не заполнен
         """
         query = '\n'.join([
@@ -87,7 +87,7 @@ class PgPodcast(Podcast):
         """Получить ссылку на файл.
 
         :returns: str
-        :raises InternalBotError: если таблилца с подкастами не заполнена
+        :raises InternalBotError: если таблица с подкастами не заполнена
         """
         query = '\n'.join([
             'SELECT f.link',

@@ -80,7 +80,7 @@ class SendableAnswer(SendableInterface):
 
         :param update: Update
         :return: list[str]
-        :raises TelegramIntegrationsError: при невалидном ответе от API телеграмма
+        :raises TelegramIntegrationsError: при инвалидном ответе от API телеграмма
         """
         responses = []
         success_status = 200
