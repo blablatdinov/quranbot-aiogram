@@ -130,10 +130,10 @@ def wait_event():
         ))
         channel = connection.channel()
         events = []
-        channel.queue_purge('updates_log')
+        channel.queue_purge('qbot_admin.updates_log')
         for _ in range(retry):
             time.sleep(delay)
-            method_frame, _, body = channel.basic_get('updates_log')
+            method_frame, _, body = channel.basic_get('qbot_admin.updates_log')
             if not body:
                 continue
             body = body.decode('utf-8')

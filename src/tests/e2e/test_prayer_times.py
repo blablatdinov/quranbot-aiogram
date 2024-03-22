@@ -64,7 +64,7 @@ def expected_message():
                     (
                         datetime.datetime
                         .strptime(elems[idx], '%H:%M')
-                        .astimezone(pytz.timezone('Europe/Moscow'))
+                        .replace(tzinfo=pytz.timezone('Europe/Moscow'))
                         .strftime('%H:%M')
                     )
                     for idx in (1, 3, 5, 6, 7, 8)
