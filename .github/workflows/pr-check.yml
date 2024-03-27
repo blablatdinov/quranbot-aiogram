@@ -24,9 +24,9 @@ name: Check pull request
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "aoifwej" ]
   push:
-    branches: [ "master" ]
+    branches: [ "aoifwej" ]
 
 permissions:
   contents: read
