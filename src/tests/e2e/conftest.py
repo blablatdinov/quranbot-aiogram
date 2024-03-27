@@ -87,7 +87,7 @@ def db_query_vals(db_conn):
 
 
 @pytest.fixture(scope='session')
-def _bot_process():
+def _bot_process(rbmq_channel):
     create_db()
     fill_test_db()
     bot = multiprocessing.Process(target=main, args=(['src/main.py', 'run_polling'],))
@@ -119,26 +119,44 @@ def wait_until(bot_name):
     return _wait_until
 
 
-@pytest.fixture()
-def wait_event():
+@pytest.fixture(scope='session')
+def queues():
+    return (
+        'qbot_admin.updates_log',
+        'quranbot.users',
+        'quranbot.mailings',
+        'quranbot.ayats',
+        'quranbot.messages',
+    )
+
+
+@pytest.fixture(scope='session')
+def rbmq_channel(queues):
     settings = EnvFileSettings.from_filename('../.env')
+    connection = pika.BlockingConnection(pika.ConnectionParameters(
+        host='localhost',
+        port=5672,
+        credentials=pika.PlainCredentials(settings.RABBITMQ_USER, settings.RABBITMQ_PASS),
+    ))
+    channel = connection.channel()
+    for queue in queues:
+        channel.queue_declare(queue)
+    yield channel
+
+
+@pytest.fixture()
+def wait_event(rbmq_channel, queues):
     def _wait_event(count, retry=50, delay=0.1):  # noqa: WPS430, E306
-        connection = pika.BlockingConnection(pika.ConnectionParameters(
-            host='localhost',
-            port=5672,
-            credentials=pika.PlainCredentials(settings.RABBITMQ_USER, settings.RABBITMQ_PASS),
-        ))
-        channel = connection.channel()
         events = []
-        channel.queue_declare('qbot_admin.updates_log')
-        channel.queue_purge('qbot_admin.updates_log')
+        for queue in queues:
+            rbmq_channel.queue_purge(queue)
         for _ in range(retry):
             time.sleep(delay)
-            method_frame, _, body = channel.basic_get('qbot_admin.updates_log')
+            method_frame, _, body = rbmq_channel.basic_get('qbot_admin.updates_log')
             if not body:
                 continue
             body = body.decode('utf-8')
-            channel.basic_ack(method_frame.delivery_tag)
+            rbmq_channel.basic_ack(method_frame.delivery_tag)
             events.append(ujson.loads(body))
             if len(events) == count:
                 return sorted(
