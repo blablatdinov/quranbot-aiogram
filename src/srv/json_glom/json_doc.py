@@ -20,41 +20,53 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-import datetime
+from typing import Any, Protocol, final
 
-import pytest
+import attrs
+from glom import glom
+from pyeo import elegant
 
-from srv.events.prayer_created_event import PrayerCreatedEvent
-from srv.json_glom.json_doc import GlomJson
-
-
-@pytest.fixture()
-async def _city(pgsql):
-    await pgsql.execute('\n'.join([
-        'INSERT INTO cities',
-        '(city_id)',
-        "VALUES ('6a4e14a7-b05d-4769-b801-e0c0dbf3c923')",
-    ]))
+from app_types.dictable import Dictable, JsonDict, FkDict
 
 
-@pytest.mark.usefixtures('_city')
-async def test(pgsql):
-    await PrayerCreatedEvent(pgsql).process(GlomJson.dict_ctor({
-        'data': {
-            'name': 'fajr',
-            'time': '5:36',
-            'city_id': '6a4e14a7-b05d-4769-b801-e0c0dbf3c923',
-            'day': '2023-01-02',
-        },
-    }))
+@elegant
+class Json(Protocol):
+    """Json объект."""
 
-    row = await pgsql.fetch_one('SELECT name, time, city_id, day FROM prayers')
-    assert {
-        key: row[key]
-        for key in ('name', 'time', 'city_id', 'day')
-    } == {
-        'name': 'fajr',
-        'time': datetime.time(5, 36),
-        'city_id': '6a4e14a7-b05d-4769-b801-e0c0dbf3c923',
-        'day': datetime.date(2023, 1, 2),
-    }
+    def path(self, pth: str) -> Any:
+        """Получить значение по пути."""
+
+
+@final
+@attrs.define(frozen=True)
+@elegant
+class GlomJson(Json):
+    """Json объект."""
+
+    _json_dict: Dictable
+
+    @classmethod
+    def json_ctor(cls, raw_json: str) -> Json:
+        """Конструктор для json строк.
+
+        :param raw_json: str
+        :return: Json
+        """
+        return cls(JsonDict(raw_json))
+
+    @classmethod
+    def dict_ctor(cls, dict_: dict) -> Json:
+        """Конструктор для словарей.
+
+        :param dict_: dict
+        :return: Json
+        """
+        return cls(FkDict(dict_))
+
+
+    def path(self, pth: str) -> Any:
+        """Получить значение по пути при помощи glom.
+
+        :param pth: str
+        """
+        return glom(self._json_dict.to_dict(), pth)

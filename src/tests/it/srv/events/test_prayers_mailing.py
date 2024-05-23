@@ -25,13 +25,13 @@ import datetime
 import httpx
 import pytest
 import ujson
-from eljson.json_doc import JsonDoc
 from furl import furl
 from loguru import logger
 
 from integrations.tg.tg_answers import TgEmptyAnswer
 from srv.events.prayers_mailing import PrayersMailingPublishedEvent
 from srv.events.sink import RabbitmqSink
+from srv.json_glom.json_doc import GlomJson
 from srv.users.pg_user import PgUser
 
 
@@ -193,7 +193,7 @@ async def test(pgsql, fake_redis, time_machine, settings_ctor, mock_http_routes)
         RabbitmqSink(settings, logger),
         logger,
         fake_redis,
-    ).process(JsonDoc({}))
+    ).process(GlomJson({}))
 
     assert all(route.called for route in mock_http_routes)
 
@@ -217,6 +217,6 @@ async def test_ramadan_mode(pgsql, fake_redis, time_machine, settings_ctor, mock
         RabbitmqSink(settings, logger),
         logger,
         fake_redis,
-    ).process(JsonDoc({}))
+    ).process(GlomJson({}))
 
     assert mock_http_ramadan_mode.called

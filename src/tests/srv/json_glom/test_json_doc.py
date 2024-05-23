@@ -20,41 +20,17 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-import datetime
-
-import pytest
-
-from srv.events.prayer_created_event import PrayerCreatedEvent
+from app_types.dictable import FkDict
 from srv.json_glom.json_doc import GlomJson
 
 
-@pytest.fixture()
-async def _city(pgsql):
-    await pgsql.execute('\n'.join([
-        'INSERT INTO cities',
-        '(city_id)',
-        "VALUES ('6a4e14a7-b05d-4769-b801-e0c0dbf3c923')",
-    ]))
+def test():
+    got = GlomJson(FkDict({'a': {'b': {'c': 'value'}}})).path('a.b.c')
+
+    assert got == 'value'
 
 
-@pytest.mark.usefixtures('_city')
-async def test(pgsql):
-    await PrayerCreatedEvent(pgsql).process(GlomJson.dict_ctor({
-        'data': {
-            'name': 'fajr',
-            'time': '5:36',
-            'city_id': '6a4e14a7-b05d-4769-b801-e0c0dbf3c923',
-            'day': '2023-01-02',
-        },
-    }))
+def test_json_ctor():
+    got = GlomJson.json_ctor('{"a":{"b":{"c":"value"}}}').path('a.b.c')
 
-    row = await pgsql.fetch_one('SELECT name, time, city_id, day FROM prayers')
-    assert {
-        key: row[key]
-        for key in ('name', 'time', 'city_id', 'day')
-    } == {
-        'name': 'fajr',
-        'time': datetime.time(5, 36),
-        'city_id': '6a4e14a7-b05d-4769-b801-e0c0dbf3c923',
-        'day': datetime.date(2023, 1, 2),
-    }
+    assert got == 'value'

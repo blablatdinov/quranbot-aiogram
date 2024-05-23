@@ -20,41 +20,47 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-import datetime
+from typing import Protocol, final
 
-import pytest
-
-from srv.events.prayer_created_event import PrayerCreatedEvent
-from srv.json_glom.json_doc import GlomJson
-
-
-@pytest.fixture()
-async def _city(pgsql):
-    await pgsql.execute('\n'.join([
-        'INSERT INTO cities',
-        '(city_id)',
-        "VALUES ('6a4e14a7-b05d-4769-b801-e0c0dbf3c923')",
-    ]))
+import attrs
+import ujson
+from pyeo import elegant
 
 
-@pytest.mark.usefixtures('_city')
-async def test(pgsql):
-    await PrayerCreatedEvent(pgsql).process(GlomJson.dict_ctor({
-        'data': {
-            'name': 'fajr',
-            'time': '5:36',
-            'city_id': '6a4e14a7-b05d-4769-b801-e0c0dbf3c923',
-            'day': '2023-01-02',
-        },
-    }))
+class Dictable(Protocol):
+    """Объект, конвертируемый в dict."""
 
-    row = await pgsql.fetch_one('SELECT name, time, city_id, day FROM prayers')
-    assert {
-        key: row[key]
-        for key in ('name', 'time', 'city_id', 'day')
-    } == {
-        'name': 'fajr',
-        'time': datetime.time(5, 36),
-        'city_id': '6a4e14a7-b05d-4769-b801-e0c0dbf3c923',
-        'day': datetime.date(2023, 1, 2),
-    }
+    def to_dict(self) -> dict:
+        """Конвертация в dict."""
+
+
+@final
+@attrs.define(frozen=True)
+@elegant
+class FkDict(Dictable):
+    """Фейковый dict."""
+
+    _origin: dict
+
+    def to_dict(self) -> dict:
+        """Конвертация в dict.
+
+        :return: dict
+        """
+        return self._origin
+
+
+@final
+@attrs.define(frozen=True)
+@elegant
+class JsonDict(Dictable):
+    """Json, конвертированный в dict."""
+
+    _raw_json: str
+
+    def to_dict(self) -> dict:
+        """Конвертация в dict.
+
+        :return: dict
+        """
+        return ujson.loads(self._raw_json)

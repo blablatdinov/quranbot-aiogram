@@ -148,7 +148,7 @@ class PgAyat(Ayat):  # noqa: WPS214. This class contain 4 secondary ctor and 4 m
         :return: Ayat
         """
         return cls(
-            AyatIdByPublicId(event_body.path('$.data.public_id')[0], pgsql),
+            AyatIdByPublicId(event_body.path('data.public_id'), pgsql),
             pgsql,
         )
 
@@ -234,10 +234,10 @@ class PgAyat(Ayat):  # noqa: WPS214. This class contain 4 secondary ctor and 4 m
         ])
         await self._pgsql.execute(query, {
             'ayat_id': await self._ayat_id.to_int(),
-            'day': event_body.path('$.data.day')[0],
-            'audio_id': event_body.path('$.data.audio_id')[0],
-            'ayat_number': event_body.path('$.data.ayat_number')[0],
-            'content': event_body.path('$.data.content')[0],
-            'arab_text': event_body.path('$.data.arab_text')[0],
-            'transliteration': event_body.path('$.data.transliteration')[0],
+            'day': event_body.path('data.day'),
+            'audio_id': event_body.path('data.audio_id'),
+            'ayat_number': event_body.path('data.ayat_number'),
+            'content': event_body.path('data.content'),
+            'arab_text': event_body.path('data.arab_text'),
+            'transliteration': event_body.path('data.transliteration'),
         })

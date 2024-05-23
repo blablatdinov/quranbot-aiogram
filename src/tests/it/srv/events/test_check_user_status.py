@@ -23,12 +23,12 @@
 import httpx
 import pytest
 import ujson
-from eljson.json_doc import JsonDoc
 
 from app_types.logger import FkLogSink
 from integrations.tg.tg_answers import FkAnswer
 from srv.events.check_user_status import CheckUsersStatus
 from srv.events.sink import FkSink
+from srv.json_glom.json_doc import GlomJson
 
 
 @pytest.fixture()
@@ -70,7 +70,7 @@ async def _users(pgsql):
 async def test_user_status(pgsql):
     await CheckUsersStatus(
         FkAnswer(), pgsql, FkSink(), FkLogSink(),
-    ).process(JsonDoc({}))
+    ).process(GlomJson({}))
 
     assert [
         row['is_active']
@@ -82,7 +82,7 @@ async def test_user_status(pgsql):
 async def test_unsubscribed(pgsql):
     await CheckUsersStatus(
         FkAnswer(), pgsql, FkSink(), FkLogSink(),
-    ).process(JsonDoc({}))
+    ).process(GlomJson({}))
 
     assert [
         (row['chat_id'], row['is_active'])

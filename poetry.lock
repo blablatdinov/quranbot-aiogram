@@ -241,6 +241,17 @@ toml = ["tomli (>=1.1.0)"]
 yaml = ["PyYAML"]
 
 [[package]]
+name = "boltons"
+version = "24.0.0"
+description = "When they're not builtins, they're boltons."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "boltons-24.0.0-py3-none-any.whl", hash = "sha256:9618695a6ec4f50412e7072e5d78910a00b4111d0b9b549e4a3d60bc321e7807"},
+    {file = "boltons-24.0.0.tar.gz", hash = "sha256:7153feccaea1ff2e1472f68d4b57fadb796a2ee49d29f638f1c9cd8fb5ebd916"},
+]
+
+[[package]]
 name = "certifi"
 version = "2023.11.17"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -568,23 +579,6 @@ files = [
 ]
 
 [[package]]
-name = "eljson"
-version = "0.0.1a1"
-description = "This is how python package should look like!"
-optional = false
-python-versions = ">=3.8.1,<4.0"
-files = [
-    {file = "eljson-0.0.1a1-py3-none-any.whl", hash = "sha256:376eaa5555d45d6d3f0a791efbf2a4b0d43c4f9bbb26abd3d2a9e516e40e0f3c"},
-    {file = "eljson-0.0.1a1.tar.gz", hash = "sha256:538ba4794e0b457ec2576921eff679b9458d2131deb30dafb8f427e76560f33c"},
-]
-
-[package.dependencies]
-attrs = ">=23.1,<24.0"
-jsonpath-ng = ">=1.5,<2.0"
-jsonschema = ">=4.17,<5.0"
-ujson = ">=5,<6"
-
-[[package]]
 name = "eo-styleguide"
 version = "0.0.1a12"
 description = "Pyeo is an advanced static analysis tool tailored specifically to enforce the principles advocated by Elegant Objects (elegantobjects.org) in Python projects. It serves as a quality control instrument to ensure that your Python code adheres to the core tenets of elegance, simplicity, and maintainability."
@@ -623,6 +617,21 @@ files = [
 
 [package.extras]
 tests = ["asttokens (>=2.1.0)", "coverage", "coverage-enable-subprocess", "ipython", "littleutils", "pytest", "rich"]
+
+[[package]]
+name = "face"
+version = "20.1.1"
+description = "A command-line application framework (and CLI parser). Friendly for users, full-featured for developers."
+optional = false
+python-versions = "*"
+files = [
+    {file = "face-20.1.1-py2-none-any.whl", hash = "sha256:3790311a7329e4b0d90baee346eecad54b337629576edf3a246683a5f0d24446"},
+    {file = "face-20.1.1-py3-none-any.whl", hash = "sha256:ca3a1d8b8b6aa8e61d62a300e9ee24e09c062aceda549e9a640128e4fa0f4559"},
+    {file = "face-20.1.1.tar.gz", hash = "sha256:7d59ca5ba341316e58cf72c6aff85cca2541cf5056c4af45cb63af9a814bed3e"},
+]
+
+[package.dependencies]
+boltons = ">=20.0.0"
 
 [[package]]
 name = "fakeredis"
@@ -910,6 +919,26 @@ files = [
 ]
 
 [[package]]
+name = "glom"
+version = "23.5.0"
+description = "A declarative object transformer and formatter, for conglomerating nested data."
+optional = false
+python-versions = "*"
+files = [
+    {file = "glom-23.5.0-py3-none-any.whl", hash = "sha256:fe4e9be4dc93c11a99f8277042e4bee95419c02cda4b969f504508b0a1aa6a66"},
+    {file = "glom-23.5.0.tar.gz", hash = "sha256:06af5e3486aacc59382ba34e53ebeabd7a9345d78f7dbcbee26f03baa4b83bac"},
+]
+
+[package.dependencies]
+attrs = "*"
+boltons = ">=19.3.0"
+face = "20.1.1"
+
+[package.extras]
+toml = ["tomli"]
+yaml = ["PyYAML"]
+
+[[package]]
 name = "greenlet"
 version = "3.0.3"
 description = "Lightweight in-process concurrent programming"
@@ -1162,20 +1191,6 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
-
-[[package]]
-name = "jsonpath-ng"
-version = "1.6.1"
-description = "A final implementation of JSONPath for Python that aims to be standard compliant, including arithmetic and binary comparison operators and providing clear AST for metaprogramming."
-optional = false
-python-versions = "*"
-files = [
-    {file = "jsonpath-ng-1.6.1.tar.gz", hash = "sha256:086c37ba4917304850bd837aeab806670224d3f038fe2833ff593a672ef0a5fa"},
-    {file = "jsonpath_ng-1.6.1-py3-none-any.whl", hash = "sha256:8f22cd8273d7772eea9aaa84d922e0841aa36fdb8a2c6b7f6c3791a16a9bc0be"},
-]
-
-[package.dependencies]
-ply = "*"
 
 [[package]]
 name = "jsonschema"
@@ -1741,17 +1756,6 @@ files = [
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["pytest", "pytest-benchmark"]
-
-[[package]]
-name = "ply"
-version = "3.11"
-description = "Python Lex & Yacc"
-optional = false
-python-versions = "*"
-files = [
-    {file = "ply-3.11-py2.py3-none-any.whl", hash = "sha256:096f9b8350b65ebd2fd1346b12452efe5b9607f7482813ffca50c22722a807ce"},
-    {file = "ply-3.11.tar.gz", hash = "sha256:00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3"},
-]
 
 [[package]]
 name = "pony"
@@ -3554,4 +3558,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "1b2565b2e97fda2f5b7aca09403d0da37f33103301cdd6e46967f5cc7819aead"
+content-hash = "bba78606076948e5129af4ff648fbd6df21fe9627e6b116621d87e0a3091fbfa"

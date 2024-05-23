@@ -62,7 +62,7 @@ class MailingCreatedEvent(ReceivedEvent):
         :param json_doc: Json
         :raises UnreacheableError: unreacheable state
         """
-        if json_doc.path('$.data.group')[0] == 'all':
+        if json_doc.path('data.group') == 'all':
             chat_ids = [
                 row['chat_id']
                 for row in await self._pgsql.fetch_all('\n'.join([
@@ -71,7 +71,7 @@ class MailingCreatedEvent(ReceivedEvent):
                     "WHERE is_active = 't'",
                 ]))
             ]
-        elif json_doc.path('$.data.group')[0] == 'admins':
+        elif json_doc.path('data.group') == 'admins':
             chat_ids = self._settings.admin_chat_ids()
         else:
             raise UnreacheableError
@@ -84,7 +84,7 @@ class MailingCreatedEvent(ReceivedEvent):
                             TgMessageAnswer(self._empty_answer),
                             chat_id,
                         ),
-                        json_doc.path('$.data.text')[0],
+                        json_doc.path('data.text'),
                     ),
                 )
                 for chat_id in chat_ids
@@ -93,7 +93,7 @@ class MailingCreatedEvent(ReceivedEvent):
             strict=True,
         )
         for answer, chat_id in zipped_ans_chat_ids:
-            await self._iteration(answer, chat_id, unsubscribed_users, json_doc.path('$.data.mailing_id')[0])
+            await self._iteration(answer, chat_id, unsubscribed_users, json_doc.path('data.mailing_id'))
         await UpdatedUsersStatusEvent(
             PgUpdatedUsersStatus(self._pgsql, FkAsyncListable(unsubscribed_users)),
             FkAsyncListable(unsubscribed_users),

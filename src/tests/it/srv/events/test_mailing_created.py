@@ -24,12 +24,12 @@ import uuid
 
 import httpx
 import pytest
-from eljson.json_doc import JsonDoc
 
 from app_types.logger import FkLogSink
 from integrations.tg.tg_answers import TgEmptyAnswer
 from srv.events.mailing_created import MailingCreatedEvent
 from srv.events.sink import FkSink
+from srv.json_glom.json_doc import GlomJson
 
 
 @pytest.fixture()
@@ -83,7 +83,7 @@ async def test(pgsql, settings_ctor):
         FkLogSink(),
         settings_ctor(admin_chat_ids='93754').ADMIN_CHAT_IDS,
     ).process(
-        JsonDoc({'data': {
+        GlomJson.dict_ctor({'data': {
             'mailing_id': str(uuid.uuid4()),
             'text': 'Hello',
             'group': 'all',

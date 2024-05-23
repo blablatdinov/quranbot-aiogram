@@ -25,13 +25,13 @@ from pathlib import Path
 
 import pytest
 import pytz
-from eljson.json_doc import JsonDoc
 
 from settings import BASE_DIR
 from srv.ayats.ayat import FkAyat
 from srv.ayats.ayat_identifier import FkIdentifier
 from srv.ayats.pg_ayat import PgAyat, TextLenSafeAyat
 from srv.files.file import FkFile
+from srv.json_glom.json_doc import GlomJson
 
 
 @pytest.fixture()
@@ -115,7 +115,7 @@ async def test_change(pgsql):
             'transliteration': 'Updated arab transliteration',
         },
     }
-    await PgAyat.ayat_changed_event_ctor(JsonDoc(event), pgsql).change(JsonDoc(event))
+    await PgAyat.ayat_changed_event_ctor(GlomJson.dict_ctor(event), pgsql).change(GlomJson.dict_ctor(event))
 
     changed_record = await pgsql.fetch_one('SELECT * FROM ayats WHERE ayat_id = 1')
 

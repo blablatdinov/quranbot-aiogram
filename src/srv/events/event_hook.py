@@ -28,7 +28,6 @@ import attrs
 import ujson
 from aiormq.abc import DeliveredMessage
 from databases import Database
-from eljson.json_doc import JsonDoc
 from pyeo import elegant
 from quranbot_schema_registry import validate_schema
 
@@ -36,6 +35,7 @@ from app_types.logger import LogSink
 from app_types.runable import SyncRunable
 from settings import Settings
 from srv.events.recieved_event import ReceivedEvent
+from srv.json_glom.json_doc import GlomJson
 
 
 @elegant
@@ -130,7 +130,7 @@ class RbmqEventHook(EventHook):
         # TODO #802 Удалить или задокументировать необходимость приватного метода "_inner_handler"
         decoded_body = message.body.decode('utf-8')
         self._logger.info('Taked event {0}'.format(decoded_body))
-        body_json = JsonDoc.from_string(decoded_body)  # type: ignore [no-untyped-call]
+        body_json = GlomJson.from_string(decoded_body)  # type: ignore [no-untyped-call]
         try:
             validate_schema(
                 ujson.loads(decoded_body),

@@ -56,9 +56,9 @@ class MessageDeleted(ReceivedEvent):
             TgMessageIdAnswer(
                 TgChatIdAnswer(
                     TgMessageDeleteAnswer(self._empty_answer),
-                    json_doc.path('$.data.chat_id')[0],
+                    json_doc.path('data.chat_id'),
                 ),
-                json_doc.path('$.data.message_id')[0],
+                json_doc.path('data.message_id'),
             ),
             self._logger,
         ).send(FkUpdate())

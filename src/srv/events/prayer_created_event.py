@@ -54,12 +54,12 @@ class PrayerCreatedEvent(ReceivedEvent):
         await self._pgsql.execute(
             query,
             {
-                'name': json.path('$.data.name')[0],
-                'time': datetime.datetime.strptime(json.path('$.data.time')[0], '%H:%M').replace(
+                'name': json.path('data.name'),
+                'time': datetime.datetime.strptime(json.path('data.time'), '%H:%M').replace(
                     tzinfo=pytz.timezone('Europe/Moscow'),
                 ),
-                'city_id': json.path('$.data.city_id')[0],
-                'day': datetime.datetime.strptime(json.path('$.data.day')[0], '%Y-%m-%d').astimezone(
+                'city_id': json.path('data.city_id'),
+                'day': datetime.datetime.strptime(json.path('data.day'), '%Y-%m-%d').astimezone(
                     pytz.timezone('Europe/Moscow'),
                 ),
             },

@@ -26,13 +26,13 @@ import httpx
 import pytest
 import pytz
 import ujson
-from eljson.json_doc import JsonDoc
 from furl import furl
 from loguru import logger
 
 from integrations.tg.tg_answers import TgEmptyAnswer
 from srv.events.morning_content_published import MorningContentPublishedEvent
 from srv.events.sink import RabbitmqSink
+from srv.json_glom.json_doc import GlomJson
 from srv.users.pg_user import PgUser
 
 
@@ -156,7 +156,7 @@ async def test(pgsql, users, settings_ctor):
         settings,
         RabbitmqSink(settings, logger),
         logger,
-    ).process(JsonDoc({}))
+    ).process(GlomJson({}))
 
     assert [
         (await user.chat_id(), await user.is_active(), await user.day())

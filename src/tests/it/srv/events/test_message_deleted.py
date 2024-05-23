@@ -20,15 +20,14 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 import httpx
 import pytest
-from eljson.json_doc import JsonDoc
 
 from app_types.logger import FkLogSink
 from integrations.tg.tg_answers import TgEmptyAnswer
 from srv.events.message_deleted import MessageDeleted
 from srv.events.sink import FkSink
+from srv.json_glom.json_doc import GlomJson
 
 
 @pytest.fixture()
@@ -48,4 +47,4 @@ async def test(pgsql):
         pgsql,
         FkSink(),
         FkLogSink(),
-    ).process(JsonDoc({'data': {'chat_id': 37945, 'message_id': 893457}}))
+    ).process(GlomJson.dict_ctor({'data': {'chat_id': 37945, 'message_id': 893457}}))
