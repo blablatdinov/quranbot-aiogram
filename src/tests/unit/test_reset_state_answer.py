@@ -51,7 +51,7 @@ async def test_origin_answer_not_modificated(fake_redis):
         FkAnswer(),
         RedisUserState(fake_redis, FkIntable(123), FkLogSink()),
     ).build(TgUpdate({'from': {'id': 123}}))
-    origin = (await FkAnswer().build(FkUpdate()))[0].url
+    origin = (await FkAnswer().build(FkUpdate.empty_ctor()))[0].url
 
     assert got[0].url == origin
 

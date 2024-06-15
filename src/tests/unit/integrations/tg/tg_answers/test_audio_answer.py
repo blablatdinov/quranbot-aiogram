@@ -25,6 +25,6 @@ from integrations.tg.tg_answers import FkAnswer, TgAudioAnswer
 
 
 async def test():
-    got = await TgAudioAnswer(FkAnswer()).build(FkUpdate())
+    got = await TgAudioAnswer(FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain/sendAudio'

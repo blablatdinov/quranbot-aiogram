@@ -25,7 +25,7 @@ from integrations.tg.tg_answers import TgEmptyAnswer
 
 
 async def test():
-    got = await TgEmptyAnswer('token').build(FkUpdate())
+    got = await TgEmptyAnswer('token').build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://api.telegram.org/bottoken/'
 

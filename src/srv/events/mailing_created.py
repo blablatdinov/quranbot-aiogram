@@ -116,7 +116,7 @@ class MailingCreatedEvent(ReceivedEvent):
                 ),
                 self._events_sink,
                 mailing_id,
-            ).send(FkUpdate())
+            ).send(FkUpdate.empty_ctor())
         except TelegramIntegrationsError as err:
             error_messages = [
                 'chat not found',

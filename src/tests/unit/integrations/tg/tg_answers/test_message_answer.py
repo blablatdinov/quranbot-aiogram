@@ -25,6 +25,6 @@ from integrations.tg.tg_answers import FkAnswer, TgMessageAnswer
 
 
 async def test():
-    got = await TgMessageAnswer(FkAnswer()).build(FkUpdate())
+    got = await TgMessageAnswer(FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain/sendMessage'

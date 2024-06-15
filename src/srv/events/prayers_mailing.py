@@ -110,7 +110,7 @@ class PrayersMailingPublishedEvent(ReceivedEvent):
                                         self._pgsql,
                                         date,
                                         UserCityId(self._pgsql, active_user[CHAT_ID]),
-                                        FkUpdate(),
+                                        FkUpdate.empty_ctor(),
                                     ),
                                     self._settings.RAMADAN_MODE,
                                 ),
@@ -143,7 +143,7 @@ class PrayersMailingPublishedEvent(ReceivedEvent):
                 ),
                 self._events_sink,
                 uuid.uuid4(),
-            ).send(FkUpdate())
+            ).send(FkUpdate.empty_ctor())
         except TelegramIntegrationsError as err:
             error_messages = [
                 'chat not found',

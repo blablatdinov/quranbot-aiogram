@@ -25,6 +25,6 @@ from integrations.tg.tg_answers import FkAnswer, TgHtmlParseAnswer
 
 
 async def test():
-    got = await TgHtmlParseAnswer(FkAnswer()).build(FkUpdate())
+    got = await TgHtmlParseAnswer(FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain?parse_mode=html'

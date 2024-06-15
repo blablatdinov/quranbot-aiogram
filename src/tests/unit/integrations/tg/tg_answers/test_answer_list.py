@@ -28,7 +28,7 @@ async def test():
     got = await TgAnswerList(
         FkAnswer(),
         FkAnswer(),
-    ).build(FkUpdate())
+    ).build(FkUpdate.empty_ctor())
 
     assert len(got) == 2
     assert [request.url for request in got] == ['https://some.domain', 'https://some.domain']

@@ -154,7 +154,7 @@ class MorningContentPublishedEvent(ReceivedEvent):
                 ),
                 self._events_sink,
                 uuid.uuid4(),
-            ).send(FkUpdate())
+            ).send(FkUpdate.empty_ctor())
         except TelegramIntegrationsError as err:
             error_messages = [
                 'chat not found',

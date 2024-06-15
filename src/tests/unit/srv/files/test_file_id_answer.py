@@ -45,6 +45,6 @@ class FakeAnswer(TgAnswer):
 async def test():
     got = await TelegramFileIdAnswer(
         FkAnswer(), FkFile('file_id', ''),
-    ).build(FkUpdate())
+    ).build(FkUpdate.empty_ctor())
 
     assert got[0].url.query.decode('utf-8') == 'audio=file_id'

@@ -26,6 +26,6 @@ from integrations.tg.tg_answers.chat_action import TgChatAction
 
 
 async def test():
-    got = await TgChatAction(FkAnswer()).build(FkUpdate())
+    got = await TgChatAction(FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain/sendChatAction'

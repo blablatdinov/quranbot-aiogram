@@ -45,12 +45,12 @@ async def test():
         FkAnswer(),
         FkUpdateUserCity(),
         FkCity(uuid.uuid4(), 'Казань'),
-    ).build(FkUpdate())
+    ).build(FkUpdate.empty_ctor())
 
     assert got[0].url.params['text'] == 'Вам будет приходить время намаза для города Казань'
 
 
 async def test_city_not_supported():
-    got = await CityNotSupportedAnswer(_Answer(), FkAnswer()).build(FkUpdate())
+    got = await CityNotSupportedAnswer(_Answer(), FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url.params['text'] == 'Этот город не поддерживается'

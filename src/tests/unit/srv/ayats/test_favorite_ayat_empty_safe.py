@@ -40,7 +40,7 @@ async def test():
     got = await FavoriteAyatEmptySafeAnswer(
         FkAnswer('http://right-way.com'),
         FkAnswer('http://error-way.com'),
-    ).build(FkUpdate())
+    ).build(FkUpdate.empty_ctor())
 
     assert str(got[0].url) == 'http://right-way.com'
 
@@ -49,6 +49,6 @@ async def test_error():
     got = await FavoriteAyatEmptySafeAnswer(
         IndexErrorAnswer(),
         FkAnswer(),
-    ).build(FkUpdate())
+    ).build(FkUpdate.empty_ctor())
 
     assert str(got[0].url) == 'https://some.domain'

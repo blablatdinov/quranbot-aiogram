@@ -25,6 +25,6 @@ from integrations.tg.tg_answers import FkAnswer, TgKeyboardEditAnswer
 
 
 async def test():
-    got = await TgKeyboardEditAnswer(FkAnswer()).build(FkUpdate())
+    got = await TgKeyboardEditAnswer(FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain/editMessageReplyMarkup'

@@ -61,4 +61,4 @@ class MessageDeleted(ReceivedEvent):
                 json_doc.path('$.data.message_id')[0],
             ),
             self._logger,
-        ).send(FkUpdate())
+        ).send(FkUpdate.empty_ctor())

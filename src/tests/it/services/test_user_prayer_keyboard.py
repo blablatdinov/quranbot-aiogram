@@ -113,7 +113,7 @@ async def test(pgsql, user, execution_number):
             pgsql,
             FkPrayerDate(datetime.date(2024, 6, 5)),
             await user.chat_id(),
-        ).generate(FkUpdate())
+        ).generate(FkUpdate.empty_ctor())
         for _ in range(10)
     ]
     await asyncio.gather(*tasks)
@@ -127,4 +127,4 @@ async def test_empty(pgsql, user):
             pgsql,
             FkPrayerDate(datetime.date(2024, 6, 5)),
             await user.chat_id(),
-        ).generate(FkUpdate())
+        ).generate(FkUpdate.empty_ctor())

@@ -32,7 +32,7 @@ async def test():
     got = await TgAnswerFork(
         FkLogSink(),
         FkAnswer(),
-    ).build(FkUpdate())
+    ).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain'
     assert len(got) == 1
@@ -40,4 +40,4 @@ async def test():
 
 async def test_not_processable():
     with pytest.raises(NotProcessableUpdateError):
-        await TgAnswerFork(FkLogSink()).build(FkUpdate())
+        await TgAnswerFork(FkLogSink()).build(FkUpdate.empty_ctor())

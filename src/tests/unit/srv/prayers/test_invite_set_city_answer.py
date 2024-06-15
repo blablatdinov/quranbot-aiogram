@@ -40,7 +40,7 @@ class FkOrigin(TgAnswer):
 
 
 async def test_exception():
-    got = await UserWithoutCitySafeAnswer(FkOrigin(), FkAnswer()).build(FkUpdate())
+    got = await UserWithoutCitySafeAnswer(FkOrigin(), FkAnswer()).build(FkUpdate.empty_ctor())
 
     assert got[0].url == 'https://some.domain'
 
