@@ -41,10 +41,7 @@ class UpdatesTimeout(SupportsInt):
 
     @override
     def __int__(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         return 5
 
 
@@ -53,10 +50,7 @@ class UpdatesURLInterface(Protocol):
     """Интерфейс URL запроса для получения уведомлений."""
 
     def generate(self, update_id: int) -> str:
-        """Генерация.
-
-        :param update_id: int
-        """
+        """Генерация."""
 
 
 @final
@@ -69,10 +63,7 @@ class UpdatesURL(SupportsStr):
 
     @override
     def __str__(self) -> str:
-        """Строчное представление.
-
-        :return: str
-        """
+        """Строчное представление."""
         return 'https://api.telegram.org/bot{0}/getUpdates'.format(self._token)
 
 
@@ -86,11 +77,7 @@ class UpdatesWithOffsetURL(UpdatesURLInterface):
 
     @override
     def generate(self, update_id: int) -> str:
-        """Генерация.
-
-        :param update_id: int
-        :return: str
-        """
+        """Генерация."""
         return '{0}?offset={1}'.format(self._updates_url, update_id)
 
 
@@ -105,11 +92,7 @@ class UpdatesLongPollingURL(UpdatesURLInterface):
 
     @override
     def generate(self, update_id: int) -> str:
-        """Генерация.
-
-        :param update_id: int
-        :return: str
-        """
+        """Генерация."""
         return str(httpx.URL(self._origin.generate(update_id)).copy_add_param(
             'timeout',
             int(self._long_polling_timeout),
@@ -140,18 +123,12 @@ class PollingUpdatesIterator(UpdatesIteratorInterface):
 
     @override
     def __aiter__(self) -> 'UpdatesIteratorInterface':
-        """Точка входа в итератор.
-
-        :return: UpdatesIteratorInterface
-        """
+        """Точка входа в итератор."""
         return self
 
     @override
     async def __anext__(self) -> list[Update]:
-        """Вернуть следующий элемент.
-
-        :return: list[Update]
-        """
+        """Вернуть следующий элемент."""
         async with httpx.AsyncClient() as client:
             try:
                 resp = await client.get(

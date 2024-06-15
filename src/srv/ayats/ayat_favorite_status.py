@@ -56,16 +56,10 @@ class AyatFavoriteStatus(FavoriteAyatStatus):
 
     @override
     def ayat_id(self) -> AyatId:
-        """Идентификатор аята.
-
-        :return: int
-        """
+        """Идентификатор аята."""
         return int(IntableRegularExpression(self._source))
 
     @override
     def change_to(self) -> bool:
-        """Целевое значение.
-
-        :return: bool
-        """
+        """Целевое значение."""
         return 'addToFavor' in self._source

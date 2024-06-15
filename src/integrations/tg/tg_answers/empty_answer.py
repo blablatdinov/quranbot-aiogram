@@ -41,17 +41,10 @@ class TgEmptyAnswer(TgAnswer, SupportsStr):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Создать ответ с токеном.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Создать ответ с токеном."""
         return [httpx.Request('GET', httpx.URL('https://api.telegram.org/bot{0}/'.format(self._token)))]
 
     @override
     def __str__(self) -> str:
-        """Приведение к строке.
-
-        :return: str
-        """
+        """Приведение к строке."""
         return 'TgEmptyAnswer(token=...)'

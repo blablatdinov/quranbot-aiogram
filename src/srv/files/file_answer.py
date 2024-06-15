@@ -45,11 +45,7 @@ class TgFileIdNotFilledSafeAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         try:
             return await self._file_id_answer.build(update)
         except TelegramFileIdNotFilledError:
@@ -68,11 +64,7 @@ class FileAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Отправка.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Отправка."""
         if self._debug_mode:
             return await self._file_link_answer.build(update)
         return await TgFileIdNotFilledSafeAnswer(

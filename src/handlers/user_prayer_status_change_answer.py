@@ -50,11 +50,7 @@ class UserPrayerStatusChangeAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Обработка запроса.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Обработка запроса."""
         prayer_status = PrayerStatus.update_ctor(update)
         await UserPrayerStatus(self._pgsql).change(prayer_status)
         return await PrayerTimeAnswer.edited_markup_ctor(

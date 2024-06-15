@@ -81,14 +81,7 @@ class QuranbotAnswer(TgAnswer):
         settings: Settings,
         logger: LogSink,
     ) -> None:
-        """Конструктор класса.
-
-        :param database: Database
-        :param redis: Redis
-        :param event_sink: SinkInterface
-        :param settings: Settings
-        :param logger: LogSink
-        """
+        """Конструктор класса."""
         self._pgsql = database
         self._redis = redis
         self._event_sink = event_sink
@@ -98,11 +91,7 @@ class QuranbotAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         return await self._answer.build(update)
 
     def _pre_build(self) -> None:

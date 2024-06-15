@@ -47,11 +47,7 @@ class CachedAyatSearchQueryAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         await AyatTextSearchQuery(
             self._redis,
             TgChatId(update),

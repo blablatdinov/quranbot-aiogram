@@ -39,28 +39,19 @@ class CachedTextSearchQuery(TextSearchQuery):
 
     @override
     def __init__(self, origin: TextSearchQuery) -> None:
-        """Ctor.
-
-        :param origin: TextSearchQuery
-        """
+        """Ctor."""
         self._origin = origin
         self._cached = ''
 
     @override
     async def write(self, query: str) -> None:
-        """Запись.
-
-        :param query: str
-        """
+        """Запись."""
         await self._origin.write(query)
         self._cached = query
 
     @override
     async def read(self) -> str:
-        """Чтение.
-
-        :return: str
-        """
+        """Чтение."""
         if self._cached:
             return self._cached
         self._cached = await self._origin.read()
@@ -80,10 +71,7 @@ class AyatTextSearchQuery(TextSearchQuery):
 
     @override
     async def write(self, query: str) -> None:
-        """Запись.
-
-        :param query: str
-        """
+        """Запись."""
         key = self._key_template.format(int(self._chat_id))
         self._logger.info('Try writing key: {0}, value: {1}'.format(key, query))
         await self._redis.set(key, query)
@@ -93,11 +81,7 @@ class AyatTextSearchQuery(TextSearchQuery):
 
     @override
     async def read(self) -> str:
-        """Чтение.
-
-        :return: str
-        :raises UserHasNotSearchQueryError: user has not search query
-        """
+        """Чтение."""
         key = self._key_template.format(int(self._chat_id))
         self._logger.info('Try read {0}'.format(key))
         redis_value = await self._redis.get(key)

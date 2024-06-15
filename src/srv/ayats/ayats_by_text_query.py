@@ -45,10 +45,7 @@ class AyatsByTextQuery(AsyncListable):
 
     @override
     async def to_list(self) -> Sequence[Ayat]:
-        """Список.
-
-        :return: list[QAyat]
-        """
+        """Список."""
         query = '\n'.join([
             'SELECT a.ayat_id AS id',
             'FROM ayats AS a',

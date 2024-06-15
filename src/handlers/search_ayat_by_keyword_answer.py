@@ -53,11 +53,7 @@ class SearchAyatByKeywordAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         return await TgMessageRegexAnswer(
             '.+',
             HighlightedSearchAnswer(

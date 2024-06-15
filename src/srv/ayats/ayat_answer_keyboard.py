@@ -50,11 +50,7 @@ class AyatAnswerKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация."""
         return await AyatFavoriteKeyboardButton(
             NeighborAyatKeyboard(self._neighbor_ayats, self._ayat_callback_template),
             AyatIsFavor(

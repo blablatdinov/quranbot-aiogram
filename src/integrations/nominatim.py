@@ -46,10 +46,7 @@ class CityNameById(CityName):
 
     @override
     async def to_str(self) -> str:
-        """Поиск.
-
-        :return: str
-        """
+        """Поиск."""
         return await self._pgsql.fetch_val('SELECT name FROM cities WHERE city_id = :city_id', {
             'city_id': await self._city_id.to_str(),
         })
@@ -69,7 +66,6 @@ class NominatimCityName(CityName):
 
         curl https://nominatim.openstreetmap.org/reverse.php?lat=55.7887&lon=49.1221&format=jsonv2
 
-        :returns: CityName
         """
         url_template = 'https://nominatim.openstreetmap.org/reverse.php?lat={latitude}&lon={longitude}&format=jsonv2'
         url = url_template.format(

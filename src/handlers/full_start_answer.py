@@ -58,11 +58,7 @@ class FullStartAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         answer_to_sender = TgAnswerToSender(TgMessageAnswer(self._empty_answer))
         return await ResetStateAnswer(
             TgAnswerMarkup(

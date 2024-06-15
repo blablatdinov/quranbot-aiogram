@@ -44,11 +44,7 @@ class AyatFavoriteKeyboardButton(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация клавиатуры.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация клавиатуры."""
         keyboard = ujson.loads(await self._origin.generate(update))
         is_favor = await self._is_favor.to_bool()
         keyboard['inline_keyboard'].append([{

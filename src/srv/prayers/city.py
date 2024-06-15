@@ -56,18 +56,12 @@ class FkCity(City):
 
     @override
     async def city_id(self) -> uuid.UUID:
-        """Идентификатор города.
-
-        :return: uuid.UUID
-        """
+        """Идентификатор города."""
         return self._city_id
 
     @override
     async def name(self) -> str:
-        """Имя города.
-
-        :return: name
-        """
+        """Имя города."""
         return self._name
 
 
@@ -82,11 +76,7 @@ class CityIdByName(AsyncSupportsStr):
 
     @override
     async def to_str(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        :raises CityNotSupportedError: city not found
-        """
+        """Строковое представление."""
         query = 'SELECT city_id FROM cities WHERE name = :name'
         city_id = await self._pgsql.fetch_val(
             query,
@@ -108,38 +98,22 @@ class PgCity(City):
 
     @classmethod
     def name_ctor(cls, city_name: str, pgsql: Database) -> City:
-        """Конструктор для имени города.
-
-        :param city_name: str
-        :param pgsql: Database
-        :return: City
-        """
+        """Конструктор для имени города."""
         return cls(CityIdByName(FkAsyncStr(city_name), pgsql), pgsql)
 
     @classmethod
     def location_ctor(cls, location: Coordinates, pgsql: Database) -> City:
-        """Конструктор для координат города.
-
-        :param location: Coordinates
-        :param pgsql: Database
-        :return: City
-        """
+        """Конструктор для координат города."""
         return cls(CityIdByName(NominatimCityName(location), pgsql), pgsql)
 
     @override
     async def city_id(self) -> uuid.UUID:
-        """Идентификатор города.
-
-        :return: uuid.UUID
-        """
+        """Идентификатор города."""
         return uuid.UUID(await self._city_id.to_str())
 
     @override
     async def name(self) -> str:
-        """Имя города.
-
-        :return: str
-        """
+        """Имя города."""
         query = 'SELECT name FROM cities WHERE city_id = :city_id'
         return await self._pgsql.fetch_val(
             query,

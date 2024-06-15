@@ -57,10 +57,7 @@ class PgExistUserPrayers(ExistUserPrayers):
 
     @override
     async def fetch(self) -> list[_ExistUserPrayersDict]:
-        """Получить.
-
-        :return: list[Record]
-        """
+        """Получить."""
         select_query = '\n'.join([
             'SELECT',
             '    pau.prayer_at_user_id,',

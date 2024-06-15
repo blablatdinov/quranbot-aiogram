@@ -54,27 +54,17 @@ class PrayerStatus(PrayerStatusInterface):
 
     @classmethod
     def update_ctor(cls, update: Update) -> PrayerStatusInterface:
-        """Конструктор для update.
-
-        :param update: Update
-        :return: PrayerStatusInterface
-        """
+        """Конструктор для update."""
         return cls(str(CallbackQueryData(update)))
 
     @override
     def user_prayer_id(self) -> int:
-        """Рассчитать идентификатор времени намаза пользователя.
-
-        :return: int
-        """
+        """Рассчитать идентификатор времени намаза пользователя."""
         return int(IntableRegularExpression(self._source))
 
     @override
     def change_to(self) -> bool:
-        """Рассчитать статус времени намаза пользователя.
-
-        :return: bool
-        """
+        """Рассчитать статус времени намаза пользователя."""
         return 'not' not in self._source.split('(')[0]
 
 
@@ -83,10 +73,7 @@ class UserPrayerStatusInterface(Protocol):
     """Интерфейс статуса прочитанности намаза."""
 
     async def change(self, prayer_status: PrayerStatus) -> None:
-        """Изменить статус прочитанности.
-
-        :param prayer_status: PrayerStatus
-        """
+        """Изменить статус прочитанности."""
 
 
 @final
@@ -99,10 +86,7 @@ class UserPrayerStatus(UserPrayerStatusInterface):
 
     @override
     async def change(self, prayer_status: PrayerStatusInterface) -> None:
-        """Изменить статус прочитанности.
-
-        :param prayer_status: PrayerStatus
-        """
+        """Изменить статус прочитанности."""
         query = '\n'.join([
             'UPDATE prayers_at_user',
             'SET is_read = :is_read',

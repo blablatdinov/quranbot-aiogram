@@ -48,8 +48,5 @@ class FkAsyncListable(AsyncListable, Generic[ListElemT_co]):
     _origin: list[ListElemT_co]
 
     async def to_list(self) -> list[ListElemT_co]:
-        """Список.
-
-        :return: list[ListElemT]
-        """
+        """Список."""
         return self._origin

@@ -43,10 +43,7 @@ class InlineQuery(SupportsStr):
 
     @override
     def __str__(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return str(
             ErrRedirectJsonPath(
                 JsonPathValue(
@@ -68,10 +65,7 @@ class InlineQueryId(SupportsInt):
 
     @override
     def __int__(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         return int(
             ErrRedirectJsonPath(
                 JsonPathValue(

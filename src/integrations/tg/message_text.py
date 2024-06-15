@@ -41,10 +41,7 @@ class MessageText(SupportsStr):
 
     @override
     def __str__(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return str(
             ErrRedirectJsonPath(
                 JsonPathValue(

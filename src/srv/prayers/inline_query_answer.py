@@ -48,12 +48,7 @@ class InlineQueryAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        :raises NotProcessableUpdateError: if update hasn't inline query
-        """
+        """Собрать ответ."""
         try:
             inline_query_data = str(InlineQuery(update))
         except InlineQueryNotFoundError as err:

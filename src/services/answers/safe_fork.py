@@ -42,11 +42,7 @@ class SafeFork(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :returns: list[httpx.Request]
-        """
+        """Собрать ответ."""
         try:
             return await self._origin.build(update)
         except NotProcessableUpdateError:

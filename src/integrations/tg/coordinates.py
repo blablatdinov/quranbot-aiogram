@@ -54,18 +54,12 @@ class FkCoordinates(Coordinates):
 
     @override
     def latitude(self) -> float:
-        """Широта.
-
-        :return: float
-        """
+        """Широта."""
         return self._latitude
 
     @override
     def longitude(self) -> float:
-        """Долгота.
-
-        :return: float
-        """
+        """Долгота."""
         return self._longitude
 
 
@@ -79,10 +73,7 @@ class TgMessageCoordinates(Coordinates):
 
     @override
     def latitude(self) -> float:
-        """Ширина.
-
-        :return: float
-        """
+        """Ширина."""
         return float(
             ErrRedirectJsonPath(
                 JsonPathValue(
@@ -95,10 +86,7 @@ class TgMessageCoordinates(Coordinates):
 
     @override
     def longitude(self) -> float:
-        """Долгота.
-
-        :return: float
-        """
+        """Долгота."""
         return float(
             ErrRedirectJsonPath(
                 JsonPathValue(

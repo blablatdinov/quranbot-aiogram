@@ -48,10 +48,7 @@ class MessageDeleted(ReceivedEvent):
 
     @override
     async def process(self, json_doc: Json) -> None:
-        """Обработка события.
-
-        :param json_doc: Json
-        """
+        """Обработка события."""
         await SendableAnswer(
             TgMessageIdAnswer(
                 TgChatIdAnswer(

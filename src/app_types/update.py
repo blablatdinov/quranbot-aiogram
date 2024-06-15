@@ -52,16 +52,10 @@ class FkUpdate(Update):
 
     @override
     def __str__(self) -> str:
-        """Приведение к строке.
-
-        :return: str
-        """
+        """Приведение к строке."""
         return str(self._raw)
 
     @override
     def asdict(self) -> dict:
-        """Словарь.
-
-        :return: dict
-        """
+        """Словарь."""
         return ujson.loads(str(self._raw))

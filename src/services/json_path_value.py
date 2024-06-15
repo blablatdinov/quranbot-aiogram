@@ -69,11 +69,7 @@ class JsonPathValue(JsonPath, Generic[_ET_co]):
 
     @override
     def evaluate(self) -> _ET_co:
-        """Получить значение.
-
-        :return: T
-        :raises ValueError: если поиск не дал результатов
-        """
+        """Получить значение."""
         match = jsonpath_ng.parse(self._json_path).find(self._json)
         if not match:
             raise ValueError
@@ -91,11 +87,7 @@ class MatchManyJsonPath(JsonPath, Generic[_ET_co]):
 
     @override
     def evaluate(self) -> _ET_co:
-        """Получить значение.
-
-        :return: T
-        :raises ValueError: если поиск не дал результатов
-        """
+        """Получить значение."""
         for path in self._json_paths:
             with suppress(ValueError):
                 return JsonPathValue(
@@ -116,11 +108,7 @@ class ErrRedirectJsonPath(JsonPath, Generic[_ET_co]):
 
     @override
     def evaluate(self) -> _ET_co:
-        """Получить значение.
-
-        :return: T
-        :raises _to_error: преобразуемое исключение
-        """
+        """Получить значение."""
         with suppress(ValueError):
             return self._origin.evaluate()
         raise self._to_error

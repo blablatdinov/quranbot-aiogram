@@ -53,20 +53,12 @@ class PgPodcast(Podcast):
 
     @override
     async def podcast_id(self) -> int:
-        """Идентификатор подкаста.
-
-        :return: int
-        """
+        """Идентификатор подкаста."""
         return await self._podcast_id.to_int()
 
     @override
     async def tg_file_id(self) -> TgFileId:
-        """Получить идентификатор файла.
-
-        :returns: str
-        :raises InternalBotError: если таблилца с подкастами не заполнена
-        :raises TelegramFileIdNotFilledError: идентификатор файла не заполнен
-        """
+        """Получить идентификатор файла."""
         query = '\n'.join([
             'SELECT f.telegram_file_id',
             'FROM podcasts AS p',
@@ -86,11 +78,7 @@ class PgPodcast(Podcast):
 
     @override
     async def file_link(self) -> FileLink:
-        """Получить ссылку на файл.
-
-        :returns: str
-        :raises InternalBotError: если таблилца с подкастами не заполнена
-        """
+        """Получить ссылку на файл."""
         query = '\n'.join([
             'SELECT f.link',
             'FROM podcasts AS p',

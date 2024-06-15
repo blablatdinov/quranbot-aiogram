@@ -41,11 +41,7 @@ class TgMessageDeleteAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         return [
             httpx.Request(
                 request.method,

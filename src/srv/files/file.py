@@ -52,16 +52,10 @@ class FkFile(TgFile):
 
     @override
     async def tg_file_id(self) -> TgFileId:
-        """Идентификатор файла в телеграм.
-
-        :return: TgFileId
-        """
+        """Идентификатор файла в телеграм."""
         return self._file_id
 
     @override
     async def file_link(self) -> FileLink:
-        """Идентификатор файла в телеграм.
-
-        :return: FileLink
-        """
+        """Идентификатор файла в телеграм."""
         return self._link

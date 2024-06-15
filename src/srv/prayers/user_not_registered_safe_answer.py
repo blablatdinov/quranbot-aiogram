@@ -43,11 +43,7 @@ class UserNotRegisteredSafeAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Обработка запроса.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Обработка запроса."""
         try:
             return await self._origin.build(update)
         except UserNotFoundError:

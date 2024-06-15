@@ -41,11 +41,7 @@ class PgAdminMessage(AdminMessage):
 
     @override
     async def to_str(self) -> str:
-        """Текст административного сообщения.
-
-        :raises InternalBotError: возбуждается если административное сообщение с переданным ключом не найдено
-        :return: str
-        """
+        """Текст административного сообщения."""
         record = await self._pgsql.fetch_one(
             'SELECT text FROM admin_messages m WHERE m.key = :key', {'key': self._key},
         )

@@ -53,11 +53,7 @@ class FavoriteAyatPage(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         favorite_ayats = await FavoriteAyats(TgChatId(update), self._pgsql).to_list()
         for ayat in favorite_ayats:
             expect_ayat_id = IntableRegularExpression(CallbackQueryData(update))

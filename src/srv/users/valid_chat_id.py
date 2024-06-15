@@ -54,19 +54,12 @@ class FkValidChatId(ValidChatId):
 
     @classmethod
     def int_ctor(cls, int_value: SupportsInt) -> ValidChatId:
-        """Числовой конструктор.
-
-        :param int_value: SupportsInt
-        :return: FkValidChatId
-        """
+        """Числовой конструктор."""
         return cls(FkAsyncIntable(int_value))
 
     @override
     async def to_int(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         return await self._origin.to_int()
 
 
@@ -81,21 +74,12 @@ class PgValidChatId(ValidChatId):
 
     @classmethod
     def int_ctor(cls, pgsql: Database, int_value: SupportsInt) -> ValidChatId:
-        """Числовой конструктор.
-
-        :param pgsql: Database
-        :param int_value: SupportsInt
-        :return: FkValidChatId
-        """
+        """Числовой конструктор."""
         return cls(pgsql, FkAsyncIntable(int_value))
 
     @override
     async def to_int(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        :raises UserNotFoundError: если пользователь не найден
-        """
+        """Числовое представление."""
         chat_id = await self._pgsql.fetch_val(
             '\n'.join([
                 'SELECT chat_id',

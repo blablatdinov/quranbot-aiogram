@@ -67,10 +67,7 @@ class TelegramIntegrationsError(BaseAppError):
 
     @override
     def __str__(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return self._message
 
 

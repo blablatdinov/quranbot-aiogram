@@ -47,11 +47,7 @@ class DecrementSkippedPrayerAnswer(TgAnswer):
     _pgsql: Database
 
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         query = '\n'.join([
             'UPDATE prayers_at_user AS pau',
             "SET is_read = 't'",

@@ -46,11 +46,7 @@ class AyatIdBySuraAyatNum(AsyncIntable):
 
     @override
     async def to_int(self) -> AyatId:
-        """Числовое представление.
-
-        :return: int
-        :raises AyatNotFoundError: если аят не найден
-        """
+        """Числовое представление."""
         query = '\n'.join([
             'SELECT ayat_id FROM ayats',
             'WHERE',
@@ -88,11 +84,7 @@ class AyatIdByPublicId(AsyncIntable):
 
     @override
     async def to_int(self) -> AyatId:
-        """Числовое представление.
-
-        :return: int
-        :raises AyatNotFoundError: если аят не найден
-        """
+        """Числовое представление."""
         query = '\n'.join([
             'SELECT ayat_id FROM ayats',
             'WHERE public_id = :public_id',

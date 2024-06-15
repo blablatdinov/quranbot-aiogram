@@ -43,10 +43,7 @@ class TgDateTime(DateTimeInterface):
 
     @override
     def datetime(self) -> datetime.datetime:
-        """Дата/время.
-
-        :return: datetime.datetime
-        """
+        """Дата/время."""
         return datetime.datetime.fromtimestamp(
             int(
                 ErrRedirectJsonPath(

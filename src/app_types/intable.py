@@ -46,10 +46,7 @@ class FkIntable(SupportsInt):
 
     @override
     def __int__(self) -> int:
-        """Приведение к числу.
-
-        :return: int
-        """
+        """Приведение к числу."""
         return self._source
 
 
@@ -63,10 +60,7 @@ class FkAsyncIntable(AsyncIntable):
 
     @override
     async def to_int(self) -> int:
-        """Приведение к числу с возможностью переключения контекста.
-
-        :return: int
-        """
+        """Приведение к числу с возможностью переключения контекста."""
         return int(self._source)
 
 
@@ -76,20 +70,14 @@ class CachedAsyncIntable(AsyncIntable):
     """Кэшируемое число."""
 
     def __init__(self, origin: AsyncIntable) -> None:
-        """Конструктор.
-
-        :param origin: AsyncIntable
-        """
+        """Конструктор."""
         self._origin = origin
         self._cached = False
         self._cached_value = 0
 
     @override
     async def to_int(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         if self._cached:
             return self._cached_value
         int_val = await self._origin.to_int()

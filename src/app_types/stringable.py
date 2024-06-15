@@ -55,10 +55,7 @@ class FkAsyncStr(AsyncSupportsStr):
 
     @override
     async def to_str(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return self._source
 
 
@@ -72,10 +69,7 @@ class ThroughString(SupportsStr):
 
     @override
     def __str__(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return self._source
 
 
@@ -89,8 +83,5 @@ class UnwrappedString(SupportsStr):
 
     @override
     def __str__(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return str(self._origin).replace('\n', '')

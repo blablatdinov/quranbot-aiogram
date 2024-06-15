@@ -61,10 +61,7 @@ class MorningContentPublishedEvent(ReceivedEvent):
 
     @override
     async def process(self, json_doc: Json) -> None:
-        """Обработка события.
-
-        :param json_doc: Json
-        """
+        """Обработка события."""
         rows = await self._pgsql.fetch_all('\n'.join([
             'SELECT',
             '    u.chat_id,',

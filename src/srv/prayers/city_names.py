@@ -40,10 +40,7 @@ class CityNames(AsyncListable):
 
     @override
     async def to_list(self) -> list[str]:
-        """Список строк.
-
-        :returns: list[str]
-        """
+        """Список строк."""
         search_query = '%{0}%'.format(self._query)
         db_query = '\n'.join([
             'SELECT name',

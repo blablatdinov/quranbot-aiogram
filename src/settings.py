@@ -51,10 +51,7 @@ class Settings(BaseSettings):
     RAMADAN_MODE: bool = False
 
     def admin_chat_ids(self) -> list[int]:
-        """Список идентификаторов админов.
-
-        :return: list[int]
-        """
+        """Список идентификаторов админов."""
         return [
             int(chat_id.strip())
             for chat_id in self.ADMIN_CHAT_IDS.strip().split(',')

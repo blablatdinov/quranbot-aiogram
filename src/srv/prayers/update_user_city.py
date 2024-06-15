@@ -64,10 +64,7 @@ class PgUpdatedUserCity(UpdatedUserCity):
 
     @override
     async def update(self) -> None:
-        """Обновление.
-
-        :raises UserNotFoundError: незарегистрированный пользователь меняет город
-        """
+        """Обновление."""
         query = '\n'.join([
             'UPDATE users',
             'SET city_id = :city_id',

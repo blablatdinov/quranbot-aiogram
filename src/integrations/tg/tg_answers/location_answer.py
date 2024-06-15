@@ -42,11 +42,7 @@ class TgLocationAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         try:
             TgMessageCoordinates(update).latitude()
         except CoordinatesNotFoundError:

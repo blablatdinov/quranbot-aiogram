@@ -44,11 +44,7 @@ class TgCallbackQueryRegexAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         try:
             regex_result = re.search(self._pattern, str(CallbackQueryData(update)))
         except CallbackQueryNotFoundError:

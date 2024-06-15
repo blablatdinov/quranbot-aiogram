@@ -36,11 +36,7 @@ class SwitchInlineQueryKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Сборка клавиатуры.
-
-        :param update: Update
-        :return: str
-        """
+        """Сборка клавиатуры."""
         return ujson.dumps({
             'inline_keyboard': [
                 [{'text': 'Поиск города', 'switch_inline_query_current_chat': ''}],

@@ -38,10 +38,7 @@ class RamadanPrayerText(AsyncSupportsStr):
     _ramadan_mode: bool
 
     async def to_str(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         if not self._ramadan_mode:
             return await self._origin.to_str()
         source_str = await self._origin.to_str()

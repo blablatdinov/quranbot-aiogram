@@ -43,23 +43,14 @@ class TgTextAnswer(TgAnswer):
 
     @classmethod
     def str_ctor(cls, origin: TgAnswer, text: str) -> TgAnswer:
-        """Конструктор для строки.
-
-        :param origin: TgAnswer
-        :param text: str
-        :return: TgAnswer
-        """
+        """Конструктор для строки."""
         return cls(
             origin, FkAsyncStr(text),
         )
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         return [
             httpx.Request(
                 request.method,

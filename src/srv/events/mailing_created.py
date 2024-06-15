@@ -57,11 +57,7 @@ class MailingCreatedEvent(ReceivedEvent):
 
     @override
     async def process(self, json_doc: Json) -> None:
-        """Обработка события.
-
-        :param json_doc: Json
-        :raises UnreacheableError: unreacheable state
-        """
+        """Обработка события."""
         if json_doc.path('$.data.group')[0] == 'all':
             chat_ids = [
                 row['chat_id']

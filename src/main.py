@@ -54,10 +54,7 @@ from srv.events.sink import RabbitmqSink
 
 
 def main(sys_args: list[str]) -> None:
-    """Точка входа в приложение.
-
-    :param sys_args: list[str]
-    """
+    """Точка входа в приложение."""
     settings = Settings(_env_file=BASE_DIR.parent / '.env')
     rabbitmq_sink = RabbitmqSink(settings, logger)
     redis = aioredis.from_url(str(settings.REDIS_DSN))

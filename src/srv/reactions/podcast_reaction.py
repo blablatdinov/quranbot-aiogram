@@ -59,18 +59,12 @@ class PodcastReaction(PodcastReactionsT):
 
     @override
     def podcast_id(self) -> int:
-        """Идентификатор подкаста.
-
-        :return: int
-        """
+        """Идентификатор подкаста."""
         return int(IntableRegularExpression(str(self._callback_query)))
 
     @override
     def status(self) -> Literal['like', 'dislike']:
-        """Реакция.
-
-        :return: Literal['like', 'dislike']
-        """
+        """Реакция."""
         if 'dislike' in str(self._callback_query):
             return 'dislike'
         return 'like'

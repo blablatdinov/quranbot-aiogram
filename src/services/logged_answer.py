@@ -57,11 +57,7 @@ class LoggedAnswer(SendableInterface):
 
     @override
     async def send(self, update: Update) -> list[dict]:  # noqa: WPS217, WPS231
-        """Отправка.
-
-        :param update: str
-        :return: list[dict]
-        """
+        """Отправка."""
         if update.asdict().get(MESSAGE_LITERAL):
             await self._event_sink.send(
                 UPDATES_LOG,

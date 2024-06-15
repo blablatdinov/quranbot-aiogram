@@ -41,11 +41,7 @@ class TgReplySourceAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :returns: list[httpx.Request]
-        """
+        """Собрать ответ."""
         return [
             httpx.Request(
                 request.method,

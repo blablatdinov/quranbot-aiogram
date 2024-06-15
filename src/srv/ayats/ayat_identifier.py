@@ -57,19 +57,12 @@ class PgAyatIdentifier(AyatIdentifier):
 
     @override
     async def ayat_id(self) -> AyatId:
-        """Идентификатор в хранилище.
-
-        :return: AyatId
-        """
+        """Идентификатор в хранилище."""
         return await self._ayat_id.to_int()
 
     @override
     async def sura_num(self) -> SuraId:
-        """Номер суры.
-
-        :return: SuraId
-        :raises AyatNotFoundError: в случае если аят не найден
-        """
+        """Номер суры."""
         query = '\n'.join([
             'SELECT a.sura_id',
             'FROM ayats AS a',
@@ -83,11 +76,7 @@ class PgAyatIdentifier(AyatIdentifier):
 
     @override
     async def ayat_num(self) -> AyatNum:
-        """Номер аята.
-
-        :return: AyatNum
-        :raises AyatNotFoundError: в случае если аят не найден
-        """
+        """Номер аята."""
         query = '\n'.join([
             'SELECT ayat_number',
             'FROM ayats',
@@ -110,24 +99,15 @@ class FkIdentifier(AyatIdentifier):
 
     @override
     async def ayat_id(self) -> int:
-        """Идентификатор.
-
-        :return: int
-        """
+        """Идентификатор."""
         return self._id
 
     @override
     async def sura_num(self) -> int:
-        """Номер суры.
-
-        :return: int
-        """
+        """Номер суры."""
         return self._sura_num
 
     @override
     async def ayat_num(self) -> str:
-        """Номер аята.
-
-        :return: str
-        """
+        """Номер аята."""
         return self._ayat_num

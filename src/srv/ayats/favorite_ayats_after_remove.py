@@ -46,10 +46,7 @@ class FavoriteAyatsAfterRemove(AsyncListable):
 
     @override
     async def to_list(self) -> Sequence[Ayat]:
-        """Получить избранные аяты.
-
-        :returns: list[QAyat]
-        """
+        """Получить избранные аяты."""
         query = '\n'.join([
             'SELECT fa.ayat_id',
             'FROM favorite_ayats AS fa',

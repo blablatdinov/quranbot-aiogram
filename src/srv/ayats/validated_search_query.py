@@ -39,11 +39,7 @@ class ValidatedSearchQuery(SearchQuery):
 
     @override
     def sura(self) -> SuraId:
-        """Номер суры.
-
-        :return: int
-        :raises SuraNotFoundError: if sura not found
-        """
+        """Номер суры."""
         max_sura_num = 114
         sura_num = self._origin.sura()
         if not 0 < sura_num <= max_sura_num:  # noqa: WPS508
@@ -53,11 +49,7 @@ class ValidatedSearchQuery(SearchQuery):
 
     @override
     def ayat(self) -> AyatNum:
-        """Номер аята.
-
-        :return: str
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Номер аята."""
         ayat_num = self._origin.ayat()
         if not ayat_num.isdigit():
             raise AyatNotFoundError

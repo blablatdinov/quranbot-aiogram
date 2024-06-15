@@ -52,12 +52,7 @@ class UserAlreadyExistsAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        :raises UserAlreadyActiveError: if user already active
-        """
+        """Собрать ответ."""
         with suppress(UserAlreadyExistsError):
             return await self._origin.build(update)
         user = PgUser(PgValidChatId.int_ctor(self._pgsql, TgChatId(update)), self._pgsql)

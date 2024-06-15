@@ -62,11 +62,7 @@ class SearchCityAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Обработка запроса.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Обработка запроса."""
         answer_to_sender = TgAnswerToSender(TgMessageAnswer(self._empty_answer))
         try:
             city = PgCity.name_ctor(str(MessageText(update)), self._pgsql)

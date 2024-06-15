@@ -42,19 +42,12 @@ class TgUpdate(Update):
 
     @classmethod
     def str_ctor(cls, raw_update: SupportsStr) -> Update:
-        """Конструктор для строки.
-
-        :param raw_update: SupportsStr
-        :return: TgUpdate
-        """
+        """Конструктор для строки."""
         return cls(ujson.loads(str(raw_update)))
 
     @override
     def __str__(self) -> str:
-        """Приведение к строке.
-
-        :return: str
-        """
+        """Приведение к строке."""
         return ujson.dumps(self._update_dict)
 
     @override
@@ -64,7 +57,6 @@ class TgUpdate(Update):
         # TODO #360:30min возможно стоит возвращать валидированный dict: return self.parsed().dict().
         #  Подумать насколько тут необходима валидация
 
-        :return: dict
         """
         return self._update_dict
 
@@ -87,10 +79,7 @@ class CachedTgUpdate(Update):
 
     @override
     def __str__(self) -> str:
-        """Приведение к строке.
-
-        :return: str
-        """
+        """Приведение к строке."""
         str_cache_key = 'str'
         if not self._cache[str_cache_key]:
             self._cache[str_cache_key] = str(self._origin)
@@ -98,10 +87,7 @@ class CachedTgUpdate(Update):
 
     @override
     def asdict(self) -> dict:
-        """Словарь.
-
-        :return: dict
-        """
+        """Словарь."""
         dict_cache_key = 'asdict'
         if not self._cache[dict_cache_key]:
             self._cache[dict_cache_key] = self._origin.asdict()

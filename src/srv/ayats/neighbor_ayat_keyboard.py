@@ -57,10 +57,7 @@ class NeighborAyatsBtns(NeighborAyatsButtons):
     _callback_template: AyatCallbackTemplateEnum
 
     async def left(self) -> dict[str, str] | None:
-        """Левая кнопка.
-
-        :return: dict[str, str] | None
-        """
+        """Левая кнопка."""
         with suppress(AyatNotFoundError):
             left = await self._ayats_neighbors.left_neighbor()
             return {
@@ -73,10 +70,7 @@ class NeighborAyatsBtns(NeighborAyatsButtons):
         return None
 
     async def right(self) -> dict[str, str] | None:
-        """Правая кнопка.
-
-        :return: dict[str, str] | None
-        """
+        """Правая кнопка."""
         with suppress(AyatNotFoundError):
             right = await self._ayats_neighbors.right_neighbor()
             return {
@@ -100,11 +94,7 @@ class NeighborAyatKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация клавиатуры.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация клавиатуры."""
         buttons = []
         btns = NeighborAyatsBtns(self._ayats_neighbors, self._callback_template)
         left_button = await btns.left()

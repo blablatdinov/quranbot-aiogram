@@ -46,11 +46,7 @@ class CityNotSupportedAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         try:
             return await self._origin.build(update)
         except CityNotSupportedError:
@@ -72,11 +68,7 @@ class ChangeCityAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         await self._user_city.update()
         return await TgTextAnswer.str_ctor(
             self._origin,

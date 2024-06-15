@@ -51,11 +51,7 @@ class AyatBySuraAyatNumAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         result_ayat = TextLenSafeAyat(PgAyat.by_sura_ayat_num(MessageText(update), self._pgsql))
         return await AyatAnswer(
             self._debug_mode,

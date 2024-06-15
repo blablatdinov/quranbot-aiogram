@@ -44,10 +44,7 @@ class SendableInterface(Protocol):
     """Интерфейс объекта, отправляющего ответы в API."""
 
     async def send(self, update: Update) -> list[dict]:
-        """Отправка.
-
-        :param update: Update
-        """
+        """Отправка."""
 
 
 @final
@@ -60,11 +57,7 @@ class FkSendable(SendableInterface):
 
     @override
     async def send(self, update: Update) -> list[dict]:
-        """Отправка.
-
-        :param update: Update
-        :return: list[str]
-        """
+        """Отправка."""
         return self._origin
 
 
@@ -79,12 +72,7 @@ class SendableAnswer(SendableInterface):
 
     @override
     async def send(self, update: Update) -> list[dict]:
-        """Отправка.
-
-        :param update: Update
-        :return: list[str]
-        :raises TelegramIntegrationsError: при невалидном ответе от API телеграмма
-        """
+        """Отправка."""
         responses = []
         success_status = 200
         async with httpx.AsyncClient() as client:
@@ -109,12 +97,7 @@ class UserNotSubscribedSafeSendable(SendableInterface):
 
     @override
     async def send(self, update: Update) -> list[dict]:
-        """Отправка.
-
-        :param update: Update
-        :return: list[dict]
-        :raises TelegramIntegrationsError: если ошибка не связана с блокировкой бота
-        """
+        """Отправка."""
         try:
             responses = await self._origin.send(update)
         except TelegramIntegrationsError as err:
@@ -143,11 +126,7 @@ class BulkSendableAnswer(SendableInterface):
 
     @override
     async def send(self, update: Update) -> list[dict]:
-        """Отправка.
-
-        :param update: Update
-        :return: list[dict]
-        """
+        """Отправка."""
         tasks = [
             UserNotSubscribedSafeSendable(
                 SendableAnswer(answer, self._logger),

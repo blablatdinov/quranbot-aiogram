@@ -101,16 +101,7 @@ class PrayerTimeAnswer(TgAnswer):
         logger: LogSink,
         settings: Settings,
     ) -> TgAnswer:
-        """Конструктор для генерации времени намаза.
-
-        :param pgsql: Database
-        :param empty_answer: TgAnswer
-        :param admin_chat_ids: Sequence[int]
-        :param redis: Redis
-        :param logger: LogSink
-        :param settings: Settings
-        :return: TgAnswer
-        """
+        """Конструктор для генерации времени намаза."""
         return cls(
             pgsql,
             TgAnswerToSender(TgMessageAnswer(empty_answer)),
@@ -132,16 +123,7 @@ class PrayerTimeAnswer(TgAnswer):
         logger: LogSink,
         settings: Settings,
     ) -> TgAnswer:
-        """Конструктор для времен намаза при смене статуса прочитанности.
-
-        :param pgsql: Database
-        :param empty_answer: TgAnswer
-        :param admin_chat_ids: Sequence[int]
-        :param redis: Redis
-        :param logger: LogSink
-        :param settings: Settings
-        :return: TgAnswer
-        """
+        """Конструктор для времен намаза при смене статуса прочитанности."""
         return _MessageNotFoundSafeAnswer(
             cls(
                 pgsql,
@@ -167,11 +149,7 @@ class PrayerTimeAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         return await UserWithoutCitySafeAnswer(
             PrayersExpiredAnswer(
                 TgMessageIdAnswer(

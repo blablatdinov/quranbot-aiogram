@@ -35,10 +35,7 @@ class KeyboardInterface(Protocol):
     """Интерфейс клавиатуры."""
 
     async def generate(self, update: Update) -> str:
-        """Генерация.
-
-        :param update: Update
-        """
+        """Генерация."""
 
 
 @elegant
@@ -49,9 +46,5 @@ class FkKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация."""
         return '{}'  # noqa: P103 it is empty json

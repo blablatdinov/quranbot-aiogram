@@ -40,7 +40,4 @@ class SyncRunable(Protocol):
     """Интерфейс блокирующего запускаемого объекта."""
 
     def run(self, args: list[str]) -> int:
-        """Запуск.
-
-        :param args: list[str]
-        """
+        """Запуск."""

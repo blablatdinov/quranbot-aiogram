@@ -44,9 +44,6 @@ class RbmqAyatChangedEvent(AyatChangedEvent):
 
     @override
     async def process(self, json_doc: Json) -> None:
-        """Обработка события.
-
-        :param json_doc: Json
-        """
+        """Обработка события."""
         pg_ayat = PgAyat.ayat_changed_event_ctor(json_doc, self._pgsql)
         await pg_ayat.change(json_doc)

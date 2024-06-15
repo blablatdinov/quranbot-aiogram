@@ -51,10 +51,7 @@ class UserState(Protocol):
         """Состояние пользователя."""
 
     async def change_step(self, step: UserStep) -> None:
-        """Изменение, состояние пользователя.
-
-        :param step: UserStep
-        """
+        """Изменение, состояние пользователя."""
 
 
 @final
@@ -64,19 +61,13 @@ class CachedUserState(UserState):
 
     @override
     def __init__(self, origin: UserState) -> None:
-        """Ctor.
-
-        :param origin: UserState
-        """
+        """Ctor."""
         self._origin = origin
         self._cache: UserStep | None = None
 
     @override
     async def step(self) -> UserStep:
-        """Состояние пользователя.
-
-        :return: UserStep
-        """
+        """Состояние пользователя."""
         if self._cache:
             return self._cache
         self._cache = await self._origin.step()
@@ -84,10 +75,7 @@ class CachedUserState(UserState):
 
     @override
     async def change_step(self, step: UserStep) -> None:
-        """Изменение, состояние пользователя.
-
-        :param step: UserStep
-        """
+        """Изменение, состояние пользователя."""
         await self._origin.change_step(step)
         self._cache = step
 
@@ -104,10 +92,7 @@ class RedisUserState(UserState):
 
     @override
     async def step(self) -> UserStep:
-        """Состояние пользователя.
-
-        :return: UserStep
-        """
+        """Состояние пользователя."""
         redis_state_data = await self._redis.get('{0}:step'.format(int(self._chat_id)))
         if not redis_state_data:
             return UserStep.nothing
@@ -116,10 +101,7 @@ class RedisUserState(UserState):
 
     @override
     async def change_step(self, step: UserStep) -> None:
-        """Изменение, состояние пользователя.
-
-        :param step: UserStep
-        """
+        """Изменение, состояние пользователя."""
         self._logger.info('Setting user <{0}> state <{1}>...'.format(int(self._chat_id), step))
         await self._redis.set(
             '{0}:step'.format(int(self._chat_id)),

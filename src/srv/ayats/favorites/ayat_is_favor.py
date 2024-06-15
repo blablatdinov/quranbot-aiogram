@@ -43,10 +43,7 @@ class AyatIsFavor(AsyncSupportsBool):
 
     @override
     async def to_bool(self) -> bool:
-        """Приведение к булевому значению.
-
-        :return: bool
-        """
+        """Приведение к булевому значению."""
         query = '\n'.join([
             'SELECT COUNT(*)',
             'FROM favorite_ayats AS fa',

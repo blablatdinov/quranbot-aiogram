@@ -65,11 +65,7 @@ class PodcastAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Трансформация в ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Трансформация в ответ."""
         chat_id = TgChatId(update)
         return await ResetStateAnswer(
             TgAnswerList(
@@ -105,11 +101,7 @@ class MarkuppedPodcastAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Трансформация в ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Трансформация в ответ."""
         chat_id = TgChatId(update)
         return await TgAnswerMarkup(
             FileAnswer(

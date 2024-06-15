@@ -43,10 +43,7 @@ class UserFavoriteAyats(AsyncListable[Ayat]):
 
     @override
     async def to_list(self) -> list[Ayat]:
-        """Списковое представление.
-
-        :return: list[PgAyat]
-        """
+        """Списковое представление."""
         query = '\n'.join([
             'SELECT a.ayat_id AS id',
             'FROM favorite_ayats AS fa',

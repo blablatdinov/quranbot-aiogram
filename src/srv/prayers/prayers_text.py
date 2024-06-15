@@ -50,11 +50,7 @@ class UserCityId(AsyncSupportsStr):
 
     @override
     async def to_str(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        :raises UserHasNotCityIdError: user has not set city
-        """
+        """Строковое представление."""
         query = '\n'.join([
             'SELECT c.city_id',
             'FROM cities AS c',
@@ -80,11 +76,7 @@ class PrayersText(AsyncSupportsStr):
 
     @override
     async def to_str(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        :raises PrayersNotFoundError: намазы не найдены
-        """
+        """Строковое представление."""
         query = '\n'.join([
             'SELECT',
             '    c.name AS city_name,',

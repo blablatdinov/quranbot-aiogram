@@ -60,11 +60,7 @@ class PodcastMessageTextNotExistsSafeAnswer(TgAnswer):
     _new_podcast_message_answer: TgAnswer
 
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Трансформация в ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Трансформация в ответ."""
         try:
             return await self._message_text_exists_case(update)
         except ValueError:
@@ -93,11 +89,7 @@ class PodcastReactionChangeAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Трансформация в ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Трансформация в ответ."""
         reaction = PodcastReaction(CallbackQueryData(update))
         podcast = PgPodcast(
             FkAsyncIntable(reaction.podcast_id()),

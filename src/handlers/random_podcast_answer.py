@@ -53,11 +53,7 @@ class RandomPodcastAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Трансформация в ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Трансформация в ответ."""
         podcast = PgPodcast(
             CachedAsyncIntable(
                 PodcastId(self._pgsql, TgChatId(update)),

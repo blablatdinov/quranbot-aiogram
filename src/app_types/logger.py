@@ -32,32 +32,16 @@ class LogSink(Protocol):
     """Интерфейс объектов для логгирования."""
 
     def info(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003, WPS110
-        """Информационный уровень.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Информационный уровень."""
 
     def debug(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003
-        """Уровень для отладки.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Уровень для отладки."""
 
     def error(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003
-        """Уровень для ошибок.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Уровень для ошибок."""
 
     def exception(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003
-        """Уровень для исключений.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Уровень для исключений."""
 
 
 @final
@@ -72,33 +56,17 @@ class FkLogSink(LogSink):
         self.stack = []
 
     def info(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003, WPS110
-        """Информационный уровень.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Информационный уровень."""
         self.stack.append('INFO {0}'.format(args[0]))
 
     def debug(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003
-        """Уровень для отладки.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Уровень для отладки."""
         self.stack.append('DEBUG {0}'.format(args[0]))
 
     def error(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003
-        """Уровень для ошибок.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Уровень для ошибок."""
         self.stack.append('ERROR {0}'.format(args[0]))
 
     def exception(self, *args, **kwargs) -> None:  # noqa: ANN002, ANN003
-        """Уровень для исключений.
-
-        :param args: tuple[object]
-        :param kwargs: dict[object, object]
-        """
+        """Уровень для исключений."""
         self.stack.append('ERROR {0}'.format(args[0]))

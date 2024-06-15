@@ -46,16 +46,10 @@ class NumsSearchQuery(SearchQuery):
 
     @override
     def sura(self) -> SuraId:
-        """Номер суры.
-
-        :return: int
-        """
+        """Номер суры."""
         return int(str(self._query).split(':')[0])
 
     @override
     def ayat(self) -> AyatNum:
-        """Номер аята.
-
-        :return: str
-        """
+        """Номер аята."""
         return str(self._query).split(':')[1]

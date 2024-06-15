@@ -54,7 +54,6 @@ class AyatLink(SupportsStr):
 
         Пример: https://umma.ru/sura-56-al-vaky-a-sobytie/#56-18
 
-        :return: str
         """
         return 'https://umma.ru{0}#{1}-{2}'.format(
             self._sura_link,

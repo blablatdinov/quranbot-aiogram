@@ -57,12 +57,7 @@ class SearchAyatByTextAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Собрать ответ."""
         try:
             result_ayat = (
                 await AyatsByTextQuery(

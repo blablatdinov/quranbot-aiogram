@@ -53,16 +53,10 @@ class FkSearchQuery(SearchQuery):
 
     @override
     def sura(self) -> SuraId:
-        """Идентификатор суры.
-
-        :return: SuraId
-        """
+        """Идентификатор суры."""
         return self._sura
 
     @override
     def ayat(self) -> AyatNum:
-        """Номер аята.
-
-        :return: AyatNum
-        """
+        """Номер аята."""
         return self._ayat

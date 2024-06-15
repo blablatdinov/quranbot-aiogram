@@ -36,10 +36,7 @@ class TgAnswer(Protocol):
     """Интерфейс ответа пользователю."""
 
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        """
+        """Сборка ответа."""
 
 
 @final
@@ -52,12 +49,7 @@ class FkAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        :raises ValueError: if self._url is None
-        """
+        """Сборка ответа."""
         if self._url is None:
             raise ValueError
         return [httpx.Request('GET', self._url)]

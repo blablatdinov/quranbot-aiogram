@@ -33,10 +33,7 @@ class TextSearchQuery(Protocol):
     """Интерфейс запроса для поиска аятов."""
 
     async def write(self, query: str) -> None:
-        """Запись.
-
-        :param query: str
-        """
+        """Запись."""
 
     async def read(self) -> str:
         """Чтение."""
@@ -52,15 +49,9 @@ class FkTextSearchQuery(TextSearchQuery):
 
     @override
     async def write(self, query: str) -> None:
-        """Запись.
-
-        :param query: str
-        """
+        """Запись."""
 
     @override
     async def read(self) -> str:
-        """Чтение.
-
-        :return: str
-        """
+        """Чтение."""
         return self._query

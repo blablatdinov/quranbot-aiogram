@@ -36,19 +36,12 @@ class TgAnswerList(TgAnswer):
 
     @override
     def __init__(self, *answers: TgAnswer) -> None:
-        """Конструктор класса.
-
-        :param answers: TgAnswerInterface
-        """
+        """Конструктор класса."""
         self._answers = answers
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         rebuilded_requests = []
         for answer in self._answers:
             answer_requests = await answer.build(update)

@@ -43,31 +43,19 @@ class FkAyat(Ayat):
 
     @override
     def identifier(self) -> AyatIdentifier:
-        """Идентификатор.
-
-        :return: AyatIdentifier
-        """
+        """Идентификатор."""
         return self._id
 
     @override
     async def to_str(self) -> str:
-        """Текст.
-
-        :return: str
-        """
+        """Текст."""
         return self._text
 
     @override
     async def audio(self) -> TgFile:
-        """Аудио.
-
-        :return: TgFile
-        """
+        """Аудио."""
         return self._audio
 
     @override
     async def change(self, event_body: Json) -> None:
-        """Изменить содержимое аята.
-
-        :param event_body: Json
-        """
+        """Изменить содержимое аята."""

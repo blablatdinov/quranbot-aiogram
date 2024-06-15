@@ -43,11 +43,7 @@ class TgLinkPreviewOptions(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Формирование запросов.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Формирование запросов."""
         return [
             httpx.Request(
                 request.method,

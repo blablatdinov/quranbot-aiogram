@@ -51,11 +51,7 @@ class PodcastKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация клавиатуры.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация клавиатуры."""
         query = '\n'.join([
             'SELECT',
             "    COUNT(CASE WHEN reaction = 'like' THEN 1 END) AS like_count,",

@@ -45,22 +45,13 @@ class TgAnswerFork(TgAnswer):
 
     @override
     def __init__(self, logger: LogSink, *answers: TgAnswer) -> None:
-        """Конструктор класса.
-
-        :param answers: TgAnswerInterface
-        :param logger: LogSink
-        """
+        """Конструктор класса."""
         self._answers = answers
         self._logger = logger
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        :raises NotProcessableUpdateError: if not found matches
-        """
+        """Собрать ответ."""
         for answer in self._answers:
             with suppress(
                 CoordinatesNotFoundError, CallbackQueryNotFoundError, MessageIdNotFoundError, InlineQueryNotFoundError,

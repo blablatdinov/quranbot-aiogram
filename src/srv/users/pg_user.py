@@ -58,26 +58,17 @@ class FkUser(User):
 
     @override
     async def chat_id(self) -> int:
-        """Идентификатор чата.
-
-        :return: int
-        """
+        """Идентификатор чата."""
         return self._chat_id
 
     @override
     async def day(self) -> int:
-        """День для рассылки утреннего контента.
-
-        :return: int
-        """
+        """День для рассылки утреннего контента."""
         return self._day
 
     @override
     async def is_active(self) -> bool:
-        """Статус пользователя.
-
-        :return: bool
-        """
+        """Статус пользователя."""
         return self._is_active
 
 
@@ -95,10 +86,7 @@ class ChatIdByLegacyId(AsyncIntable):
 
     @override
     async def to_int(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         query = '\n'.join([
             'SELECT chat_id',
             'FROM users',
@@ -118,38 +106,22 @@ class PgUser(User):
 
     @classmethod
     def legacy_id_ctor(cls, legacy_id: AsyncIntable, pgsql: Database) -> User:
-        """Конструктор по старому идентификатору в БД.
-
-        :param legacy_id: int
-        :param pgsql: Database
-        :return: User
-        """
+        """Конструктор по старому идентификатору в БД."""
         return cls(PgValidChatId(pgsql, ChatIdByLegacyId(pgsql, legacy_id)), pgsql)
 
     @classmethod
     def int_ctor(cls, chat_id: int, pgsql: Database) -> User:
-        """Конструктор по идентификатору чата.
-
-        :param chat_id: int
-        :param pgsql: Database
-        :return: User
-        """
+        """Конструктор по идентификатору чата."""
         return cls(PgValidChatId(pgsql, FkAsyncIntable(chat_id)), pgsql)
 
     @override
     async def chat_id(self) -> int:
-        """Идентификатор чата.
-
-        :return: int
-        """
+        """Идентификатор чата."""
         return await self._chat_id.to_int()
 
     @override
     async def day(self) -> int:
-        """День для рассылки утреннего контента.
-
-        :return: int
-        """
+        """День для рассылки утреннего контента."""
         query = '\n'.join([
             'SELECT day',
             'FROM users',
@@ -159,10 +131,7 @@ class PgUser(User):
 
     @override
     async def is_active(self) -> bool:
-        """Статус пользователя.
-
-        :return: bool
-        """
+        """Статус пользователя."""
         query = '\n'.join([
             'SELECT is_active',
             'FROM users',

@@ -41,10 +41,7 @@ class DebugParamInterface(Protocol):
     """Интерфейс отладочной информации."""
 
     async def debug_value(self, update: Update) -> str:
-        """Значение отладочной информации.
-
-        :param update: Update
-        """
+        """Значение отладочной информации."""
 
 
 @final
@@ -53,23 +50,14 @@ class AppendDebugInfoAnswer(TgAnswer):
     """Ответ с отладочной информацией."""
 
     def __init__(self, answer: TgAnswer, *debug_params: DebugParamInterface, debug_mode: bool) -> None:
-        """Конструктор класса.
-
-        :param debug_mode: bool
-        :param answer: TgAnswerInterface
-        :param debug_params: DebugParamInterface
-        """
+        """Конструктор класса."""
         self._debug = debug_mode
         self._origin = answer
         self._debug_params = debug_params
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         origin_requests = await self._origin.build(update)
         if not self._debug:
             return origin_requests
@@ -110,11 +98,7 @@ class UpdateIdDebugParam(DebugParamInterface):
 
     @override
     async def debug_value(self, update: Update) -> str:
-        """Идентификатор обновления.
-
-        :param update: Update
-        :return: str
-        """
+        """Идентификатор обновления."""
         return 'Update id: {0}'.format(int(UpdateId(update)))
 
 
@@ -125,11 +109,7 @@ class TimeDebugParam(DebugParamInterface):
 
     @override
     async def debug_value(self, update: Update) -> str:
-        """Время.
-
-        :param update: Update
-        :return: str
-        """
+        """Время."""
         return 'Time: {0}'.format(datetime.datetime.now(pytz.timezone('Europe/Moscow')))
 
 
@@ -140,11 +120,7 @@ class ChatIdDebugParam(DebugParamInterface):
 
     @override
     async def debug_value(self, update: Update) -> str:
-        """Идентификатор чата.
-
-        :param update: Update
-        :return: str
-        """
+        """Идентификатор чата."""
         return 'Chat id: {0}'.format(int(TgChatId(update)))
 
 
@@ -158,9 +134,5 @@ class CommitHashDebugParam(DebugParamInterface):
 
     @override
     async def debug_value(self, update: Update) -> str:
-        """Хэш коммита.
-
-        :param update: Update
-        :return: str
-        """
+        """Хэш коммита."""
         return 'Commit hash: {0}'.format(self._commit_hash)

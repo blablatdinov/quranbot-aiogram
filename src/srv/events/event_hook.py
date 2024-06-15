@@ -58,11 +58,7 @@ class EventHookApp(SyncRunable):
 
     @override
     def run(self, args: list[str]) -> int:
-        """Запуск.
-
-        :param args: list[str]
-        :return: int
-        """
+        """Запуск."""
         asyncio.run(self._event_hook.catch())
         return 0
 
@@ -79,13 +75,7 @@ class RbmqEventHook(EventHook):
         logger: LogSink,
         *events: ReceivedEvent,
     ) -> None:
-        """Ctor.
-
-        :param settings: Settings,
-        :param pgsql: Database,
-        :param logger: LogSink,
-        :param events: ReceivedEvent,
-        """
+        """Ctor."""
         self._settings = settings
         self._pgsql = pgsql
         self._logger = logger

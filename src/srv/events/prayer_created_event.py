@@ -43,10 +43,7 @@ class PrayerCreatedEvent(ReceivedEvent):
 
     @override
     async def process(self, json: Json) -> None:
-        """Обработка события.
-
-        :param json: Json
-        """
+        """Обработка события."""
         query = '\n'.join([
             'INSERT INTO prayers (name, time, city_id, day) VALUES',
             '(:name, :time, :city_id, :day)',

@@ -41,11 +41,7 @@ class CliApp(SyncRunable):
 
     @override
     def run(self, args: list[str]) -> int:
-        """Запуск.
-
-        :param args: list[str]
-        :return: int
-        """
+        """Запуск."""
         try:
             asyncio.run(self._origin.run())
         except KeyboardInterrupt:
@@ -60,19 +56,12 @@ class ForkCliApp(SyncRunable):
 
     @override
     def __init__(self, *apps: SyncRunable) -> None:
-        """Конструктор класса.
-
-        :param apps: SyncRunable
-        """
+        """Конструктор класса."""
         self._apps = apps
 
     @override
     def run(self, args: list[str]) -> int:
-        """Запуск.
-
-        :param args: list[str]
-        :return: int
-        """
+        """Запуск."""
         for app in self._apps:
             app.run(args)
         return 0
@@ -89,11 +78,7 @@ class CommandCliApp(SyncRunable):
 
     @override
     def run(self, args: list[str]) -> int:
-        """Запуск.
-
-        :param args: list[str]
-        :return: int
-        """
+        """Запуск."""
         if args[1] != self._command:
             return 1
         self._app.run(args)

@@ -56,10 +56,7 @@ class FkAsyncIntOrNone(AsyncIntOrNone):
 
     @override
     async def to_int(self) -> int | None:
-        """Числовое представление.
-
-        :return: int | None
-        """
+        """Числовое представление."""
         return self._origin_value
 
 
@@ -74,11 +71,7 @@ class ReferrerChatId(AsyncIntable):
 
     @override
     async def to_int(self) -> int:
-        """Получить идентификатор пригласившего.
-
-        :return: int
-        :raises StartMessageNotContainReferrerError: if message not contain referrer id
-        """
+        """Получить идентификатор пригласившего."""
         try:
             message_meta = int(IntableRegularExpression(self._message))
         except BaseAppError as err:
@@ -110,10 +103,7 @@ class ReferrerIdOrNone(AsyncIntOrNone):
 
     @override
     async def to_int(self) -> int | None:
-        """Получить идентификатор пригласившего.
-
-        :return: int
-        """
+        """Получить идентификатор пригласившего."""
         with suppress(StartMessageNotContainReferrerError, UserNotFoundError):
             return await self._origin.to_int()
         return None

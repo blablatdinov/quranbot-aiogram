@@ -40,11 +40,7 @@ class IntableRegularExpression(SupportsInt):
 
     @override
     def __int__(self) -> int:
-        """Приведение к числу.
-
-        :returns: int
-        :raises BaseAppError: если не удалось получить результат по регулярному выражению
-        """
+        """Приведение к числу."""
         regex_result = re.search(r'\d+', str(self._text_for_searching))
         if not regex_result:
             raise BaseAppError

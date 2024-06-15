@@ -65,11 +65,7 @@ class SkippedPrayersKeyboard(KeyboardInterface):
     """Клавиатура для пропущеных намазов."""
 
     async def generate(self, update: Update) -> str:
-        """Генерация клавиатуры.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация клавиатуры."""
         return ujson.dumps({
             'inline_keyboard': [
                 [{
@@ -92,10 +88,7 @@ class PrayersStatistic(AsyncSupportsStr):
     _pgsql: Database
 
     async def to_str(self) -> str:
-        """Приведение к строке.
-
-        :return: str
-        """
+        """Приведение к строке."""
         idx = 0
         res = dict.fromkeys(_PrayerNames.names(), 0)
         prayers_per_day = await self._prayers_per_day()
@@ -176,11 +169,7 @@ class SkippedPrayersAnswer(TgAnswer):
     _pgsql: Database
 
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         return await TgAnswerMarkup(
             TgTextAnswer(
                 TgAnswerToSender(

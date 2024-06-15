@@ -44,10 +44,7 @@ class PodcastId(AsyncIntable):
 
     @override
     async def to_int(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         query = '\n'.join([
             'SELECT p.podcast_id',
             'FROM podcasts AS p',

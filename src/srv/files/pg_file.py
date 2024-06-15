@@ -42,11 +42,7 @@ class PgFile(TgFile):
 
     @override
     async def tg_file_id(self) -> TgFileId:
-        """Идентификатор файла в телеграм.
-
-        :return: str
-        :raises BotFileNotFoundError: файл не найден
-        """
+        """Идентификатор файла в телеграм."""
         query = '\n'.join([
             'SELECT telegram_file_id',
             'FROM files',
@@ -59,11 +55,7 @@ class PgFile(TgFile):
 
     @override
     async def file_link(self) -> FileLink:
-        """Ссылка на файл.
-
-        :return: str
-        :raises BotFileNotFoundError: файл не найден
-        """
+        """Ссылка на файл."""
         query = '\n'.join([
             'SELECT link',
             'FROM files',

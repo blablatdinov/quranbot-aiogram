@@ -41,10 +41,7 @@ class PrayerDate(Protocol):
     """Дата времен намаза."""
 
     async def parse(self, update: Update) -> datetime.date:
-        """Парсинг из текста сообщения.
-
-        :param update: Update
-        """
+        """Парсинг из текста сообщения."""
 
 
 @final
@@ -57,11 +54,7 @@ class FkPrayerDate(PrayerDate):
 
     @override
     async def parse(self, update: Update) -> datetime.date:
-        """Парсинг из текста сообщения.
-
-        :param update: Update
-        :return: datetime.date
-        """
+        """Парсинг из текста сообщения."""
         return self._origin
 
 
@@ -73,12 +66,7 @@ class PrayersRequestDate(PrayerDate):
 
     @override
     async def parse(self, update: Update) -> datetime.date:
-        """Парсинг из текста сообщения.
-
-        :param update: Update
-        :return: datetime.date
-        :raises ValueError: время намаза не соответствует формату
-        """
+        """Парсинг из текста сообщения."""
         date = str(MessageText(update)).split(' ')[-1]
         if date == 'намаза':
             return datetime.datetime.now(pytz.timezone('Europe/Moscow')).date()
@@ -100,11 +88,7 @@ class PrayersMarkAsDate(PrayerDate):
 
     @override
     async def parse(self, update: Update) -> datetime.date:
-        """Парсинг из текста сообщения.
-
-        :param update: Update
-        :return: datetime.date
-        """
+        """Парсинг из текста сообщения."""
         msg_first_line = str(MessageText(update)).split('\n')[0]
         date = msg_first_line.split(' ')[-1][1:-1]
         return (
@@ -125,11 +109,7 @@ class DateFromUserPrayerId(PrayerDate):
 
     @override
     async def parse(self, update: Update) -> datetime.date:
-        """Парсинг из идентификатора времени намаза.
-
-        :param update: Update
-        :return: datetime.date
-        """
+        """Парсинг из идентификатора времени намаза."""
         query = '\n'.join([
             'SELECT prayers.day',
             'FROM prayers_at_user',

@@ -49,10 +49,7 @@ class NewTgUserT(Protocol):
     """Registration of user."""
 
     async def create(self, referrer_chat_id: AsyncIntOrNone) -> None:
-        """Creation.
-
-        :param referrer_chat_id: AsyncIntOrNone
-        """
+        """Creation."""
 
 
 @final
@@ -68,10 +65,7 @@ class NewTgUser(NewTgUserT):
 
     @override
     async def create(self, referrer_chat_id: AsyncIntOrNone) -> None:
-        """Creation.
-
-        :param referrer_chat_id: AsyncIntOrNone
-        """
+        """Creation."""
         try:
             await PgNewUserWithEvent(
                 PgNewUser(
@@ -113,11 +107,7 @@ class StartAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         referrer_chat_id: AsyncIntOrNone = ReferrerIdOrNone(
             ReferrerChatId(
                 str(MessageText(update)),

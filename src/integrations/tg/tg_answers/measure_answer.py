@@ -44,19 +44,12 @@ class Millis(SupportsFloat):
 
     @classmethod
     def seconds_ctor(cls, seconds: float) -> SupportsFloat:
-        """Конструктор для секунд.
-
-        :param seconds: float
-        :return: Millis
-        """
+        """Конструктор для секунд."""
         return Millis(seconds * 1000)
 
     @override
     def __float__(self) -> float:
-        """Представление в форме числа с плавающей запятой.
-
-        :return: float
-        """
+        """Представление в форме числа с плавающей запятой."""
         return self._millis
 
 
@@ -71,10 +64,7 @@ class RoundedFloat(SupportsFloat):
 
     @override
     def __float__(self) -> float:
-        """Представление в форме числа с плавающей запятой.
-
-        :return: float
-        """
+        """Представление в форме числа с плавающей запятой."""
         return round(float(self._origin), self._shift_comma)
 
 
@@ -89,11 +79,7 @@ class TgMeasureAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :returns: list[httpx.Request]
-        """
+        """Сборка ответа."""
         start = time.time()
         self._logger.info('Start process update <{0}>'.format(int(UpdateId(update))))
         requests = await self._origin.build(update)

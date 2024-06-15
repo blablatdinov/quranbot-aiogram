@@ -41,11 +41,7 @@ class TgAudioAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Создание.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Создание."""
         return [
             httpx.Request(request.method, (furl(request.url) / 'sendAudio').url)
             for request in await self._origin.build(update)

@@ -42,11 +42,7 @@ class ResizedKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация."""
         origin_keyboard = await self._origin.generate(update)
         keyboard_as_dict = ujson.loads(origin_keyboard)
         keyboard_as_dict['resize_keyboard'] = True
@@ -60,9 +56,5 @@ class DefaultKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация."""
         return '{"keyboard":[["🎧 Подкасты"],["🕋 Время намаза","🏘️ Поменять город"],["🌟 Избранное","🔍 Найти аят"]]}'

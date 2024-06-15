@@ -47,10 +47,7 @@ class ActiveUsers(AsyncListable):
 
     @override
     async def to_list(self) -> list[User]:
-        """Список пользователей.
-
-        :return: list[User]
-        """
+        """Список пользователей."""
         query = '\n'.join([
             'SELECT chat_id',
             'FROM users',
@@ -74,10 +71,7 @@ class PgUsers(AsyncListable):
 
     @override
     async def to_list(self) -> list[User]:
-        """Список пользователей.
-
-        :return: list[User]
-        """
+        """Список пользователей."""
         if not self._chat_ids:
             return []
         query_template = '\n'.join([
@@ -100,10 +94,7 @@ class UpdatedUsersStatus(Protocol):
     """Обновление статусов пользователей."""
 
     async def update(self, to: bool) -> None:
-        """Обновление.
-
-        :param to: bool
-        """
+        """Обновление."""
 
 
 @final
@@ -117,10 +108,7 @@ class PgUpdatedUsersStatus(UpdatedUsersStatus):
 
     @override
     async def update(self, to: bool) -> None:
-        """Обновление.
-
-        :param to: bool
-        """
+        """Обновление."""
         query_template = '\n'.join([
             'UPDATE users',
             'SET is_active = :to',
@@ -148,10 +136,7 @@ class UpdatedUsersStatusEvent(UpdatedUsersStatus):
 
     @override
     async def update(self, to: bool) -> None:
-        """Обновление.
-
-        :param to: bool
-        """
+        """Обновление."""
         for user in await self._users.to_list():
             await self._events_sink.send(
                 'qbot_admin.users',

@@ -44,12 +44,7 @@ class PgNewPrayersAtUser(NewPrayersAtUser):
     _pgsql: Database
 
     async def create(self, date: datetime.date) -> None:
-        """Создать.
-
-        :param date: datetime.date
-        :raises PrayerAtUserAlreadyExistsError: у пользователя уже созданы времена намазов
-        :raises PrayerAtUserNotCreatedError: не удалось создать времена намазов
-        """
+        """Создать."""
         prayer_group_id = str(uuid.uuid4())
         await self._pgsql.fetch_val(
             'INSERT INTO prayers_at_user_groups VALUES (:prayer_group_id)', {'prayer_group_id': prayer_group_id},

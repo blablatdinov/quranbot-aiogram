@@ -49,11 +49,7 @@ class UserPrayersKeyboard(KeyboardInterface):
 
     @override
     async def generate(self, update: Update) -> str:
-        """Генерация.
-
-        :param update: Update
-        :return: str
-        """
+        """Генерация."""
         with suppress(PrayerAtUserAlreadyExistsError):
             await PgNewPrayersAtUser(
                 self._chat_id,

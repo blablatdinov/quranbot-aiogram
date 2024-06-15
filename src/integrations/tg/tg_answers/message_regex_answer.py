@@ -45,11 +45,7 @@ class TgMessageRegexAnswer(TgAnswer, SupportsStr):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         if 'callback_query' in str(update):
             return []
         try:
@@ -62,8 +58,5 @@ class TgMessageRegexAnswer(TgAnswer, SupportsStr):
 
     @override
     def __str__(self) -> str:
-        """Строковое представление.
-
-        :return: str
-        """
+        """Строковое представление."""
         return 'TgMessageRegexAnswer. pattern: {0}'.format(self._pattern)

@@ -42,13 +42,7 @@ class SinkInterface(Protocol):
     """Интерфейс отправщика событий."""
 
     async def send(self, queue_name: str, event_data: dict, event_name: str, version: int) -> None:
-        """Отправить событие.
-
-        :param queue_name: str
-        :param event_data: dict
-        :param event_name: str
-        :param version: int
-        """
+        """Отправить событие."""
 
 
 @final
@@ -59,13 +53,7 @@ class FkSink(SinkInterface):
 
     @override
     async def send(self, queue_name: str, event_data: dict, event_name: str, version: int) -> None:
-        """Отправить событие.
-
-        :param queue_name: str
-        :param event_data: dict
-        :param event_name: str
-        :param version: int
-        """
+        """Отправить событие."""
 
 
 @final
@@ -79,13 +67,7 @@ class RabbitmqSink(SinkInterface):
 
     @override
     async def send(self, queue_name: str, event_data: dict, event_name: str, version: int) -> None:
-        """Отправить событие.
-
-        :param queue_name: str
-        :param event_data: dict
-        :param event_name: str
-        :param version: int
-        """
+        """Отправить событие."""
         event = {
             'event_id': str(uuid.uuid4()),
             'event_version': 1,

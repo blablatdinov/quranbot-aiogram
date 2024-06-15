@@ -42,10 +42,7 @@ class TgMessageId(MessageId):
 
     @override
     def __int__(self) -> int:
-        """Числовое представление.
-
-        :return: int
-        """
+        """Числовое представление."""
         return int(
             ErrRedirectJsonPath(
                 JsonPathValue(

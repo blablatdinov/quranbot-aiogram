@@ -97,13 +97,7 @@ class PgNewUser(NewUser):
 
     @classmethod
     def ctor(cls, new_user_chat_id: ChatId, pgsql: Database, logger: LogSink) -> NewUser:
-        """Конструктор без реферера.
-
-        :param new_user_chat_id: ChatId
-        :param pgsql: Database
-        :param logger: LogSink
-        :return: NewUser
-        """
+        """Конструктор без реферера."""
         return cls(
             FkAsyncIntOrNone(None),
             new_user_chat_id,
@@ -113,11 +107,7 @@ class PgNewUser(NewUser):
 
     @override
     async def create(self) -> None:
-        """Создание.
-
-        :raises UserAlreadyExistsError: пользователь уже зарегистрирован
-        :raises UserNotFoundError: не найден реферер
-        """
+        """Создание."""
         chat_id = int(self._new_user_chat_id)
         self._logger.debug('Insert in DB User <{0}>...'.format(chat_id))
         query = '\n'.join([

@@ -42,11 +42,7 @@ class ResetStateAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         requests = await self._origin.build(update)
         await self._user_state.change_step(UserStep.nothing)
         return requests

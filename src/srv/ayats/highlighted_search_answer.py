@@ -42,11 +42,7 @@ class HighlightedSearchAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Собрать ответ."""
         new_requests = []
         requests = await self._origin.build(update)
         search_query = await self._search_query.read()

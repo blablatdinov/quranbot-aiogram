@@ -37,10 +37,7 @@ class ReceivedEvent(Protocol[JsonPathReturnType_co]):
     """Событие."""
 
     async def process(self, json_doc: Json) -> None:
-        """Обработать событие.
-
-        :param json_doc: Json
-        """
+        """Обработать событие."""
 
 
 @elegant
@@ -55,10 +52,7 @@ class EventFork(ReceivedEvent):
 
     @override
     async def process(self, json_doc: Json) -> None:
-        """Обработать событие.
-
-        :param json_doc: Json
-        """
+        """Обработать событие."""
         name_match = json_doc.path('$.event_name')[0] == self._name
         version_match = json_doc.path('$.event_version')[0] == self._version
         if name_match and version_match:

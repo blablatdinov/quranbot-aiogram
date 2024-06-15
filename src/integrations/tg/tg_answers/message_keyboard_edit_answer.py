@@ -41,11 +41,7 @@ class TgKeyboardEditAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Пересобрать запросы к API к телеграмма.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Пересобрать запросы к API к телеграмма."""
         return [
             httpx.Request(
                 request.method,

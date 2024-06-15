@@ -59,12 +59,7 @@ class SearchAyatByTextCallbackAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Собрать ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Собрать ответ."""
         target_ayat_id = int(IntableRegularExpression(str(CallbackQueryData(update))))
         ayats = await AyatsByTextQuery(
             ThroughString(

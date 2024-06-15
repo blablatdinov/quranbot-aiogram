@@ -46,7 +46,4 @@ class Ayat(AsyncSupportsStr, Protocol):
         """Аудио файл."""
 
     async def change(self, event_body: Json) -> None:
-        """Изменить содержимое аята.
-
-        :param event_body: Json
-        """
+        """Изменить содержимое аята."""

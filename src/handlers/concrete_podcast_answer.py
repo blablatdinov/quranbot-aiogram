@@ -53,11 +53,7 @@ class ConcretePodcastAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Трансформация в ответ.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Трансформация в ответ."""
         podcast = PgPodcast(
             FkAsyncIntable(IntableRegularExpression(str(MessageText(update)))),
             self._pgsql,

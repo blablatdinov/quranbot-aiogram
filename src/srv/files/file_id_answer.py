@@ -43,11 +43,7 @@ class TelegramFileIdAnswer(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Отправка.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Отправка."""
         return [
             httpx.Request(
                 request.method,

@@ -63,11 +63,7 @@ class FavoriteNeighborAyats(NeighborAyats):
 
     @override
     async def left_neighbor(self) -> Ayat:
-        """Получить левый аят.
-
-        :return: Ayat
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Получить левый аят."""
         fayats = await self._favorite_ayats.to_list()
         for ayat_index, ayat in enumerate(fayats):
             ayat_id = await ayat.identifier().ayat_id()
@@ -79,11 +75,7 @@ class FavoriteNeighborAyats(NeighborAyats):
 
     @override
     async def right_neighbor(self) -> Ayat:
-        """Получить правый аят.
-
-        :return: AyatShort
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Получить правый аят."""
         fayats = await self._favorite_ayats.to_list()
         for ayat_index, ayat in enumerate(fayats):
             ayat_id = await ayat.identifier().ayat_id()
@@ -95,11 +87,7 @@ class FavoriteNeighborAyats(NeighborAyats):
 
     @override
     async def page(self) -> str:
-        """Информация о странице.
-
-        :return: str
-        :raises BaseAppError: if page not generated
-        """
+        """Информация о странице."""
         fayats = await self._favorite_ayats.to_list()
         for ayat_idx, ayat in enumerate(fayats, start=1):
             if self._ayat_id == 1:
@@ -123,11 +111,7 @@ class PgNeighborAyats(NeighborAyats):
 
     @override
     async def left_neighbor(self) -> Ayat:
-        """Получить левый аят.
-
-        :return: AyatShort
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Получить левый аят."""
         query = '\n'.join([
             'SELECT ayat_id',
             'FROM ayats',
@@ -140,11 +124,7 @@ class PgNeighborAyats(NeighborAyats):
 
     @override
     async def right_neighbor(self) -> Ayat:
-        """Получить правый аят.
-
-        :return: AyatShort
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Получить правый аят."""
         query = '\n'.join([
             'SELECT ayats.ayat_id',
             'FROM ayats',
@@ -157,10 +137,7 @@ class PgNeighborAyats(NeighborAyats):
 
     @override
     async def page(self) -> str:
-        """Информация о странице.
-
-        :return: str
-        """
+        """Информация о странице."""
         ayats_count = await self._pgsql.fetch_val('SELECT COUNT(*) FROM ayats')
         actual_page_num = await self._pgsql.fetch_val(
             'SELECT COUNT(*) FROM ayats WHERE ayat_id <= :ayat_id',
@@ -187,11 +164,7 @@ class TextSearchNeighborAyats(NeighborAyats):
 
     @override
     async def left_neighbor(self) -> Ayat:
-        """Получить левый аят.
-
-        :return: AyatShort
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Получить левый аят."""
         search_query = '%{0}%'.format(await self._query.read())
         rows = await self._pgsql.fetch_all(self._search_sql_query, {'search_query': search_query})
         for idx, row in enumerate(rows[1:], start=1):
@@ -203,11 +176,7 @@ class TextSearchNeighborAyats(NeighborAyats):
 
     @override
     async def right_neighbor(self) -> Ayat:
-        """Получить правый аят.
-
-        :return: AyatShort
-        :raises AyatNotFoundError: if ayat not found
-        """
+        """Получить правый аят."""
         search_query = '%{0}%'.format(await self._query.read())
         rows = await self._pgsql.fetch_all(self._search_sql_query, {'search_query': search_query})
         for idx, row in enumerate(rows[:-1]):
@@ -219,10 +188,7 @@ class TextSearchNeighborAyats(NeighborAyats):
 
     @override
     async def page(self) -> str:
-        """Информация о странице.
-
-        :return: str
-        """
+        """Информация о странице."""
         actual_page_num = 0
         rows = await self._pgsql.fetch_all(
             self._search_sql_query,

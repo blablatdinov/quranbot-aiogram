@@ -52,11 +52,7 @@ class TypingAction(TgAnswer):
 
     @override
     async def build(self, update: Update) -> list[httpx.Request]:
-        """Сборка ответа.
-
-        :param update: Update
-        :return: list[httpx.Request]
-        """
+        """Сборка ответа."""
         return [
             httpx.Request(
                 method=request.method, url=request.url.copy_add_param('action', 'typing'), headers=request.headers,
@@ -78,10 +74,7 @@ class CheckUsersStatus(ReceivedEvent):
 
     @override
     async def process(self, json_doc: Json) -> None:
-        """Обработка события.
-
-        :param json_doc: Json
-        """
+        """Обработка события."""
         users = ActiveUsers(self._pgsql)
         zipped_user_responses = zip(
             await users.to_list(),
