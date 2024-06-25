@@ -22,7 +22,7 @@
 
 # TODO #899 Перенести классы в отдельные файлы 19
 
-from typing import SupportsInt, TypeAlias, final, override
+from typing import SupportsInt, final, override
 
 import attrs
 from pyeo import elegant

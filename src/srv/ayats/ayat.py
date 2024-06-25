@@ -20,9 +20,8 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from typing import Protocol, TypeAlias, override
+from typing import Protocol
 
-import attrs
 from eljson.json import Json
 from pyeo import elegant
 

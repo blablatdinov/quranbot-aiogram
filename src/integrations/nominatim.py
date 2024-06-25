@@ -22,7 +22,7 @@
 
 # TODO #899 Перенести классы в отдельные файлы 1
 
-from typing import TypeAlias, final, override
+from typing import final, override
 
 import attrs
 import httpx
