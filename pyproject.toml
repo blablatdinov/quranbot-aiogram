@@ -116,7 +116,7 @@ max_line_length = 120
 
 [tool.ruff]
 # TODO #360:30min Поднять python target-version до "py312"
-target-version = "py311"
+target-version = "py312"
 line-length = 120
 preview = true
 output-format = "concise"
@@ -155,6 +155,7 @@ ignore = [
   "PLR630",  # We not respect staticmethods
   "G001",    # Only .format for strings
   "TRY400",  # logger.error enable
+  "TCH001",  # Move import into type-checking block
 ]
 
 [tool.ruff.lint.flake8-quotes]

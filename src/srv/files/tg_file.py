@@ -20,10 +20,10 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from typing import Protocol, TypeAlias
+from typing import Protocol
 
-TgFileId: TypeAlias = str
-FileLink: TypeAlias = str
+type TgFileId = str
+type FileLink = str
 
 
 class TgFile(Protocol):

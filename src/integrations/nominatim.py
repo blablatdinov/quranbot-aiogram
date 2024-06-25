@@ -22,7 +22,7 @@
 
 # TODO #899 Перенести классы в отдельные файлы 1
 
-from typing import TypeAlias, final, override
+from typing import final, override
 
 import attrs
 import httpx
@@ -32,7 +32,9 @@ from pyeo import elegant
 from app_types.stringable import AsyncSupportsStr
 from integrations.tg.coordinates import Coordinates
 
-CityName: TypeAlias = AsyncSupportsStr
+
+class CityName(AsyncSupportsStr):
+    """Имя города."""
 
 
 @final

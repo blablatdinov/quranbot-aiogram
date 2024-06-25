@@ -20,12 +20,12 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from typing import Protocol, TypeAlias
+from typing import Protocol
 
 from pyeo import elegant
 
-SuraId: TypeAlias = int
-AyatNum: TypeAlias = str
+type SuraId = int
+type AyatNum = str
 
 
 @elegant

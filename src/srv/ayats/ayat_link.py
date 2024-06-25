@@ -20,14 +20,14 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from typing import TypeAlias, final, override
+from typing import final, override
 
 import attrs
 from pyeo import elegant
 
 from app_types.stringable import SupportsStr
 
-_AyatNum: TypeAlias = str
+type _AyatNum = str
 
 
 @final

@@ -20,17 +20,16 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from typing import Protocol, TypeAlias, TypeVar
+from typing import Protocol
 
 from eljson.json import Json
 from pyeo import elegant
 
-JsonPathQuery: TypeAlias = str
-JsonPathReturnType_co = TypeVar('JsonPathReturnType_co', covariant=True)
+type JsonPathQuery = str
 
 
 @elegant
-class ReceivedEvent(Protocol[JsonPathReturnType_co]):
+class ReceivedEvent[JsonPathReturnType](Protocol):
     """Событие."""
 
     async def process(self, json_doc: Json) -> None:
