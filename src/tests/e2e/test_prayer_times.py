@@ -158,3 +158,28 @@ def test_with_set_city_by_location(tg_client, bot_name, wait_until):
     messages = wait_until(tg_client, 3)
 
     assert messages[0].message == 'Вам будет приходить время намаза для города Казань'
+
+
+@pytest.mark.usefixtures('_bot_process', '_clear_db', '_user_city')
+# @pytest.mark.flaky(retries=3)
+def test_with_change_city(tg_client, bot_name, wait_until):
+    tg_client.send_message(bot_name, 'Время намаза')
+    wait_until(tg_client, 5)
+    tg_client.send_message(bot_name, 'Поменять город')
+    wait_until(tg_client, 7)
+    tg_client.send_message(bot_name, 'Набережные Челны')
+    wait_until(tg_client, 9)
+    tg_client.send_message(bot_name, 'Время намаза')
+    messages = wait_until(tg_client, 11)
+
+    assert [
+        (button.text, button.data)
+        for button_row in messages[0].get_buttons()
+        for button in button_row
+    ] == [
+        ('❌', b'mark_readed(1)'),
+        ('❌', b'mark_readed(2)'),
+        ('❌', b'mark_readed(3)'),
+        ('❌', b'mark_readed(4)'),
+        ('❌', b'mark_readed(5)'),
+    ]

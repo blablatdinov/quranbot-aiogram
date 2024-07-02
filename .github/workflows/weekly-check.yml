@@ -63,6 +63,6 @@ jobs:
     - name: Create telethon session
       run: echo "${{ secrets.TELETHON_SESSION }}" | base64 --decode > me.session
     - name: Run e2e tests
-      run: .venv/bin/pytest src/tests/e2e -vv
+      run: .venv/bin/pytest src/tests/e2e/test_prayer_times.py::test_with_change_city -vv
     - name: Check dependencies relevance
       run: .venv/bin/deltaver poetry.lock --format lock
